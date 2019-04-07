@@ -30,7 +30,8 @@ window.onload= function(){
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
-<div>
+<div id="center">
+<img id="group" src="group.png">
 <form> 
 <input type="text" placeholder="What do you want to do?"></input> 
 <input type="text" placeholder="Where do you want to go?"></input>
