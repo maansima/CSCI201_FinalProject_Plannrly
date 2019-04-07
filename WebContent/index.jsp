@@ -12,7 +12,7 @@
 	session.setAttribute("loginID", 1);
 	String redirectURL = "Home.jsp";
     response.sendRedirect(redirectURL);
-
+	
 %>
 
 </body>

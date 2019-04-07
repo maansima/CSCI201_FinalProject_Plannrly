@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+body {
+	height: 100%; 
+	width: 100%;
+}
+
+#header #logo {
+	height: 100px; 
+	width: auto;
+}
+
+#Profile {
+	float: right;
+	padding: 10px;
+	padding-right: 30px;
+}
+
+#SignOut {
+	float: right;
+	padding: 10px;
+}
+
+#Login{
+	float: right;
+	padding: 10px;
+}
+
+#SignUp{
+	float: right;
+	padding: 10px;
+	padding-right: 30px;
+}
+
+a{
+	text-decoration: none;
+	color: black; 
+}

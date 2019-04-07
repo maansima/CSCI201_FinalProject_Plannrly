@@ -11,7 +11,7 @@ setTimeout("location.href = 'Home.jsp';",1500);
 </head>
 <body>
 <%
-session.setAttribute("loginID", 0);
+ 	session.setAttribute("loginID", 0);
 %>	
 	<h1 style="text-align:center;">You are being Signed Out. GoodBye!</h1>
 		

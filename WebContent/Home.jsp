@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="HomeCss.css" />
+<link rel="stylesheet" type="text/css" href="Home.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
 window.onload= function(){
-	var userID = <%= session.getAttribute("loginID")%>
+	var userID = <%= session.getAttribute("loginID") %>
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
 		document.getElementById("Profile").style.display = "none";
@@ -27,7 +27,7 @@ window.onload= function(){
 <img id="logo" src = "plannrly.jpg"></img> 
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
-<a id="Profile" href="Profile.jsp">Profile</a>
+<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 <div>
