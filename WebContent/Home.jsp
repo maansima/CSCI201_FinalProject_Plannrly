@@ -32,9 +32,9 @@ window.onload= function(){
 </div>
 <div id="center">
 <img id="group" src="group.png">
-<form> 
+<form action="YelpApiTester" method="GET">
 <input type="text" placeholder="What do you want to do?"></input> 
-<input type="text" placeholder="Where do you want to go?"></input>
+<input id="cityName" type="text" placeholder="Where do you want to go?"></input>
 <input type="submit"></input>  
 </form>
 </div>
