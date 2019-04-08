@@ -6,6 +6,8 @@ body {
 #header #logo {
 	height: 100px; 
 	width: auto;
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+	
 }
 
 #Profile {

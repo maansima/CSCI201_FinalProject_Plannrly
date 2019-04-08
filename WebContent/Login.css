@@ -1,6 +1,8 @@
 body {
 	height: 100%; 
 	width: 100%;
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+	
 }
 
 #header #logo {

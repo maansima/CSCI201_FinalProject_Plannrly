@@ -20,7 +20,7 @@ window.onload= function(){
 		document.getElementById("Profile").style.display = "initial";
 	}
 }
-</script>
+</script>r
 </head>
 <body>
 <div id = "header"> 
