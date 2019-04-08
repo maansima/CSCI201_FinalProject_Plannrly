@@ -36,7 +36,7 @@ public class YelpApiTester extends HttpServlet {
 		ArrayList<FinalYelpObj> results = new ArrayList<FinalYelpObj>(); // array for yelp results 
 		try {
             String url = "https://api.yelp.com/v3/businesses/search?location=Los%Angeles";
-            String token= "8l5DNfHJpSXq6t2-g8r5L0X3ps2fmQInSa8JPUIwhVRR-BjCGN51tn_eVeNhnsKmrYcyD2RnmIGB5g-itm4LnxB8AyUYcqgfZ9tccSEfxAc2vxYK8S4Qsm0-Q22pXHYx";
+            String token= "GETTOKENFROMANDREW";
             URL object = new URL(url);
             HttpURLConnection con = (HttpURLConnection) object.openConnection();
             con.setDoInput(true);
