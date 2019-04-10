@@ -19,7 +19,6 @@ import com.google.gson.JsonSyntaxException;
 
 
 
-
 /**
  * Servlet implementation class YelpApiTester
  */
