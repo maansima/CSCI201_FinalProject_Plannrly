@@ -29,10 +29,11 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 			ArrayList<FinalYelpObj> activitiesList = (ArrayList<FinalYelpObj>) request.getAttribute("resultList");
 			for (FinalYelpObj i : activitiesList) {
 				for (Business j : i.getBusinesses()) {
-		%>
-		<p><%=j.getName() + " " + j.getPrice()%></p>
-		<%
-			}
+					out.println("<tr class='row' onclick='getDetails(\"" + j.getName() + "\")'>");
+					out.println("<td>" + j.getName() + "</td>");
+					out.println("<td>" + j.getPrice() + "</td>");
+					out.println("</tr>");
+				}
 			}
 		%>
 	</table>
