@@ -31,10 +31,15 @@ public class YelpApiTester extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String cityName = request.getParameter("cityName");
+		String activityType = request.getParameter("activityType");
 		StringBuilder sb = new StringBuilder(); //for Json response
 		ArrayList<FinalYelpObj> results = new ArrayList<FinalYelpObj>(); // array for yelp results 
+		String cityString = cityName.trim();
+		cityString = cityString.replaceAll("\\s", "%");
+		System.out.println(cityString);
 		try {
-            String url = "https://api.yelp.com/v3/businesses/search?location=Los%Angeles";
+            String url = "https://api.yelp.com/v3/businesses/search?location="+cityString;
             String token= "8l5DNfHJpSXq6t2-g8r5L0X3ps2fmQInSa8JPUIwhVRR-BjCGN51tn_eVeNhnsKmrYcyD2RnmIGB5g-itm4LnxB8AyUYcqgfZ9tccSEfxAc2vxYK8S4Qsm0-Q22pXHYx";
             URL object = new URL(url);
             HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -70,22 +75,9 @@ public class YelpApiTester extends HttpServlet {
 		}
 		for(FinalYelpObj i : results) {
 			for(Business j : i.getBusinesses()) {
-				System.out.println(j.getName());
+				System.out.println(j.getLocation().getState() +" "+j.getName()+ " "+ j.getPrice());
 			}
 		}
-		
-		
-//		String cityName= request.getParameter("cityName");
-//		String locJson = HttpRequest.get("https://api.yelp.com/v3/businesses/search?location="+cityName+"&Authorization=8l5DNfHJpSXq6t2-g8r5L0X3ps2fmQInSa8JPUIwhVRR-BjCGN51tn_eVeNhnsKmrYcyD2RnmIGB5g-itm4LnxB8AyUYcqgfZ9tccSEfxAc2vxYK8S4Qsm0-Q22pXHYx").body();
-//		System.out.println(locJson);
-//		try {
-//			Gson gson = new Gson();
-//			WeatherJSOBJ locWeather= gson.fromJson(locJson, WeatherJSOBJ.class);
-//			results.add(locWeather);	
-//		}catch(JsonSyntaxException e) {
-//			String empty= "No Results";
-//			request.setAttribute("cityName", empty);
-//		}
 	}
 
 
