@@ -34,13 +34,19 @@ public class YelpApiTester extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cityName = request.getParameter("cityName");
 		String activityType = request.getParameter("activityType");
+		System.out.println(activityType);
 		StringBuilder sb = new StringBuilder(); //for Json response
 		ArrayList<FinalYelpObj> results = new ArrayList<FinalYelpObj>(); // array for yelp results 
 		String cityString = cityName.trim();
 		cityString = cityString.replaceAll("\\s", "%");
 		System.out.println(cityString);
 		try {
-            String url = "https://api.yelp.com/v3/businesses/search?location="+cityString;
+			String url;
+			if(activityType!=null) {
+				url = "https://api.yelp.com/v3/businesses/search?location="+cityString+"&categories="+activityType;
+			}
+			else
+				url= "https://api.yelp.com/v3/businesses/search?location="+cityString;
             String token= "8l5DNfHJpSXq6t2-g8r5L0X3ps2fmQInSa8JPUIwhVRR-BjCGN51tn_eVeNhnsKmrYcyD2RnmIGB5g-itm4LnxB8AyUYcqgfZ9tccSEfxAc2vxYK8S4Qsm0-Q22pXHYx";
             URL object = new URL(url);
             HttpURLConnection con = (HttpURLConnection) object.openConnection();

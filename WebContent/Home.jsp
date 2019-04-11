@@ -33,9 +33,14 @@ window.onload= function(){
 <div id="center">
 <img id="group" src="group.png">
 <form action="YelpApiTester" method="GET">
-<input name="activityType" type="text" placeholder="What do you want to do?"></input> 
 <input name="cityName" type="text" placeholder="Where do you want to go?"></input>
-<input type="submit"></input>  
+<select name="activityType">
+  <option value="food">Food</option>
+  <option value="bars">Bars</option>
+  <option value="active">Active</option>
+  <option value="arts">Arts</option>
+</select>
+<input type="submit"></input>
 </form>
 </div>
 </body>
