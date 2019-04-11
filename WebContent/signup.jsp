@@ -24,16 +24,16 @@ window.onload= function(){
 <link rel="stylesheet" type="text/css" href="Signup.css" />
 <body>
 <div id = "header"> 
-<img id="logo" src = "plannrly.jpg"></img> 
+<a href="/Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 <form>
-	<input type="text">Username</input> 
-	<input type="text">Password</input> 
-	<input type="submit">Submit</input> 
+	<input type="text">Username 
+	<input type="text">Password 
+	<input type="submit">Submit 
 </form>
 </body>
 </html>
