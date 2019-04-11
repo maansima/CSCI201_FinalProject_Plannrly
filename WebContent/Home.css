@@ -39,18 +39,28 @@ a{
 }
 
 #center{
-	position: relative;
-    padding-top: 10%;
-    left: 45%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
-   
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
 }
 
 #group{
-	height: 300%; 
+	height: 400px; 
 	width: auto;
+	align-self: center;
+}
+
+
+form input{
+	padding: 10px;
+	width: 200px;
+	box-shadow: 1px 1px #888888;
+}
+
+form submit{
+	width: 30px;
 }
 
