@@ -1,0 +1,45 @@
+body {
+	height: 100%; 
+	width: 100%;
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+}
+
+#header #logo {
+	height: 100px; 
+	width: auto;
+}
+
+#Profile {
+	float: right;
+	padding: 10px;
+	padding-right: 30px;
+}
+
+#SignOut {
+	float: right;
+	padding: 10px;
+}
+
+#Login{
+	float: right;
+	padding: 10px;
+}
+
+#SignUp{
+	float: right;
+	padding: 10px;
+	padding-right: 30px;
+}
+
+a{
+	text-decoration: none;
+	color: black; 
+}
+
+table{
+	 position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    text-align: center;
+}
