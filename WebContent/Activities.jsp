@@ -1,5 +1,7 @@
+<%@page import="Test.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="Test.Business,Test.Category,Test.Center, Test.Coordinates,Test.FinalYelpObj, 
+Test.Location,Test.Region,java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,5 +16,13 @@
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
+<%
+ArrayList<FinalYelpObj> activitiesList= (ArrayList<FinalYelpObj>)request.getAttribute("resultList");
+for(FinalYelpObj i : activitiesList) {
+	for(Business j : i.getBusinesses()) {%>
+		<p><%=j.getName()+ " "+ j.getPrice()%></p><% 
+	}
+}
+%>
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -73,11 +74,9 @@ public class YelpApiTester extends HttpServlet {
 			String empty= "No Results";
 			request.setAttribute("cityName", empty);
 		}
-		for(FinalYelpObj i : results) {
-			for(Business j : i.getBusinesses()) {
-				System.out.println(j.getLocation().getState() +" "+j.getName()+ " "+ j.getPrice());
-			}
-		}
+		request.setAttribute("resultList", results);
+		RequestDispatcher rd = request.getRequestDispatcher("Activities.jsp");
+		rd.forward(request, response);
 	}
 
 
