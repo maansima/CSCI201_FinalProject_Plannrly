@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% 
+String errorMessage = "";
+String result = (String)request.getAttribute("logincheck");
+if(request.getAttribute("logincheck")!=null) {
+	if(!result.equalsIgnoreCase("success")) 
+		{
+			System.out.print("in if statement");
+			errorMessage = (String)request.getAttribute("logincheck");
+			System.out.print(errorMessage);
+		}
+}
+%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="Login.css" />
@@ -9,6 +21,10 @@
 <script>
 window.onload= function(){
 	var userID = <%= session.getAttribute("loginID") %>
+	var error = <%=errorMessage%>
+	if( error != ""){
+		alert(error);
+	}
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
 		document.getElementById("Profile").style.display = "none";
@@ -30,20 +46,22 @@ window.onload= function(){
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
+
 <div id="container">
-<form> 
+<form action="LoginServlet" method = "get"> 
 <div class="child">
 	Username<br>
-	<input type="text"> 
+	<input type="text" name="uname"> 
 	</div>
-	<div class="child">
+	<div class="child" name="pword">
 	Password<br>
 	<input type="text">
 	</div>
 	<div class="child">
-	<input type="submit">
+	<input type="submit" name="submit" value="Login">
 	</div>
 </form>
+
 </div>
 </body>
 </html>
