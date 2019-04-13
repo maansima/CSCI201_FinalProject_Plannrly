@@ -28,7 +28,8 @@ window.onload= function(){
 </head>
 <body>
 	<div id="header">
-		<img id="logo" src="plannrly.jpg"></img> <a id="Login"
+		<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+		<a id="Login"
 			href="login.jsp">Login</a> <a id="SignUp" href="signup.jsp">Sign
 			up</a>
 		<div id="Profile">
