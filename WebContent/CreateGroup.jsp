@@ -31,12 +31,26 @@ window.onload= function(){
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
-
-<form onsubmit="groupCreation"> 
+<div id="container">
+<form action="groupCreation" method="GET"> 
 <input type="text" name="name">Group Name 
 <input type="text" name="members">Member Names
+<input name="cityName" type="text" placeholder="Location"></input>
+<select name="activityType">
+  <option value="food">Food</option>
+  <option value="bars">Bars</option>
+  <option value="active">Active</option>
+  <option value="arts">Arts</option>
+</select>
+<select name="price">
+  <option value="$">Food</option>
+  <option value="$$">Bars</option>
+  <option value="$$$">Active</option>
+  <option value="$$$$">Arts</option>
+</select>
+
 <input type="submit">Submit
 </form>
-
+</div>
 </body>
 </html>
