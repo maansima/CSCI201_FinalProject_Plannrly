@@ -22,8 +22,9 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("uname");
 		String password = request.getParameter("pword");
 		int result = 0;
-		String nextPage = "/index.jsp";
+		String nextPage = "/Profile.jsp";
 		DatabaseHelper dh = new DatabaseHelper();
+
 		System.out.print("Login" + username);
 		if( (username!=null && !(username.equals("")) && (password!=null && !(password.equals(""))) )) {
 			try {
@@ -36,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 			{
 				request.getSession().setAttribute("login", true);
 				request.setAttribute("logincheck", "Success");
-				nextPage = "/index.jsp";
+				nextPage = "/Profile.jsp";
 			}
 			else if( result == 2)
 			{
