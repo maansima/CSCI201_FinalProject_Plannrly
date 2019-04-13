@@ -47,5 +47,19 @@ a{
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+#group {
+	position: relative;
+	height: 200px;
+	width: auto;
+	transform: translate(120%, 120%);
+
+}
+
+.child{
+	margin: 10px;
 }

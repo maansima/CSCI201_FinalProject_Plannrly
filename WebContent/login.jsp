@@ -30,10 +30,20 @@ window.onload= function(){
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
+<div id="container">
 <form> 
-	<input type="text">Username 
-	<input type="text">Password
-	<input type="submit">Submit
+<div class="child">
+	Username<br>
+	<input type="text"> 
+	</div>
+	<div class="child">
+	Password<br>
+	<input type="text">
+	</div>
+	<div class="child">
+	<input type="submit">
+	</div>
 </form>
+</div>
 </body>
 </html>

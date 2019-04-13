@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="Home.css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Plannerly Home</title>
 <script>
 window.onload= function(){
 	var userID = <%= session.getAttribute("loginID") %>
