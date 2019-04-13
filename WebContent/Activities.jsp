@@ -48,7 +48,7 @@ window.onload= function(){
 			for (FinalYelpObj i : activitiesList) {
 				for (Business j : i.getBusinesses()) {
 					out.println("<tr>");
-					out.println("<td>" + j.getName() + "</td>");
+					out.println("<td><a href="+j.getUrl()+">" + j.getName() + "</a></td>");
 					out.println("<td>" + j.getPrice() + "</td>");
 					out.println("</tr>");
 				}
