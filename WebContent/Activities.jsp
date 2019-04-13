@@ -8,7 +8,23 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 <head>
 <link rel="stylesheet" type="text/css" href="Activities.css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Activities!</title>
+<script>
+window.onload= function(){
+	var userID = <%= session.getAttribute("loginID") %>
+	if(userID == 0){
+		document.getElementById("SignOut").style.display = "none";
+		document.getElementById("Profile").style.display = "none";
+	}
+	else if (userID!=0){
+		document.getElementById("Login").style.display = "none";
+		document.getElementById("SignUp").style.display = "none";
+		document.getElementById("SignOut").style.display = "initial";
+		document.getElementById("Profile").style.display = "initial";
+	}
+}
+
+</script>
 </head>
 <body>
 	<div id="header">
