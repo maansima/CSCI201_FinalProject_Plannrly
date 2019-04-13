@@ -48,14 +48,14 @@ window.onload= function(){
 </div>
 
 <div id="container">
-<form action="LoginServlet" method = "get"> 
+<form action="LoginServlet" method = "GET"> 
 <div class="child">
 	Username<br>
 	<input type="text" name="uname"> 
 	</div>
-	<div class="child" name="pword">
+	<div class="child">
 	Password<br>
-	<input type="text">
+	<input type="text" name="pword">
 	</div>
 	<div class="child">
 	<input type="submit" name="submit" value="Login">
