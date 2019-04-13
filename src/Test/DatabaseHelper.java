@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class DatabaseHelper {
 	
@@ -15,7 +16,7 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/WeatherUsers?user=root&password=root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
 		} catch (ClassNotFoundException cnfe) {
@@ -47,6 +48,31 @@ public class DatabaseHelper {
 		else { 
 			return false;
 		}
+	}
+	
+	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType) throws SQLException {
+		boolean check = false;
+		int memberCount = groupMembers.size();
+		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, groupName);
+		rs = st.executeQuery();
+		while(rs.next()) {
+			check = (rs.getInt(1) == 0); //verifies that no group of this name currently exists
+		}
+		if(check) {
+			String insertQuery = "INSERT INTO GroupInfo (groupName, memberCount, location, price, activityType)"
+					+ " values (?,?,?,?,?)";
+			st = conn.prepareStatement(insertQuery);
+			st.setString(1, groupName);
+			st.setInt(2, memberCount);
+			st.setString(3,  location);
+			st.setInt(4, price);
+			st.setString(5, activityType);
+			st.executeUpdate();
+			return true;
+		}
+		return false;
 	}
 	
 	public int validateLogin(String username, String password) throws SQLException {
@@ -83,6 +109,27 @@ public class DatabaseHelper {
 			System.out.println("Not found");
 			return 3;
 		}
+	}
+	
+	public boolean joinGroup(String groupName, String username) throws SQLException {
+		boolean check = false;
+		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, groupName);
+		rs = st.executeQuery();
+		while(rs.next()) {
+			check = (rs.getInt(1) == 1); //verifies a group of this name currently exists
+		}
+		if(check) {
+			String insertQuery = "INSERT INTO GroupMember (userID, groupID)"
+					+ "values(?, ?)";
+			st = conn.prepareStatement(insertQuery);
+			st.setString(1, username);
+			st.setString(2, groupName);
+			st.executeUpdate();
+			return true;
+		}
+		return false; 
 	}
 	
 	public boolean insertSearch(String searchQuery, String timestamp) throws SQLException {
