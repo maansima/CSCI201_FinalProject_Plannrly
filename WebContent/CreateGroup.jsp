@@ -32,9 +32,9 @@ window.onload= function(){
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 
-<form> 
-<input type="text">Group Name 
-<input type="text">Member Names
+<form onsubmit="groupCreation"> 
+<input type="text" name="name">Group Name 
+<input type="text" name="members">Member Names
 <input type="submit">Submit
 </form>
 

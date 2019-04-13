@@ -28,7 +28,7 @@ window.onload= function(){
 </head>
 <body>
 	<div id="header">
-		<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+	<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 		<a id="Login"
 			href="login.jsp">Login</a> <a id="SignUp" href="signup.jsp">Sign
 			up</a>
@@ -47,7 +47,7 @@ window.onload= function(){
 			ArrayList<FinalYelpObj> activitiesList = (ArrayList<FinalYelpObj>) request.getAttribute("resultList");
 			for (FinalYelpObj i : activitiesList) {
 				for (Business j : i.getBusinesses()) {
-					out.println("<tr class='row' onclick='getDetails(\"" + j.getName() + "\")'>");
+					out.println("<tr>");
 					out.println("<td>" + j.getName() + "</td>");
 					out.println("<td>" + j.getPrice() + "</td>");
 					out.println("</tr>");
