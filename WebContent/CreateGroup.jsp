@@ -43,10 +43,10 @@ window.onload= function(){
   <option value="arts">Arts</option>
 </select>
 <select name="price">
-  <option value="$">Food</option>
-  <option value="$$">Bars</option>
-  <option value="$$$">Active</option>
-  <option value="$$$$">Arts</option>
+  <option value="$">$</option>
+  <option value="$$">$$</option>
+  <option value="$$$">$$$</option>
+  <option value="$$$$">$$$$</option>
 </select>
 
 <input type="submit">Submit
