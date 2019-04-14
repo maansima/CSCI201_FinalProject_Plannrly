@@ -21,12 +21,14 @@ window.onload= function(){
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
 		document.getElementById("Profile").style.display = "none";
+		document.getElementById("GroupCreation").style.display = "none";
 	}
 	else if (userID!=0){
 		document.getElementById("Login").style.display = "none";
 		document.getElementById("SignUp").style.display = "none";
 		document.getElementById("SignOut").style.display = "initial";
 		document.getElementById("Profile").style.display = "initial";
+		document.getElementById("GroupCreation").style.display = "initial";
 	}
 }
 </script>
@@ -38,8 +40,10 @@ window.onload= function(){
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
-<a id="SignOut" href = "SignOut.jsp">Sign Out</a>
-</div> 
+<a id="GroupCreation" href = "groupcreation.jsp">Create New Group</a>
+<a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
+</div id = "signup"> 
+<p>Create your account:</p>
 <form method = "GET" action="${pageContext.request.contextPath}/ServletSignUp">
 	<input type="text" name="username" placeholder="Username"></br>
 	<input type="text" name = "pass" placeholder ="Password"></br>

@@ -57,7 +57,8 @@ public class ServletSignUp extends HttpServlet {
 				{
 					db.createAccount(username, Password);
 					HttpSession session = request.getSession();
-					session.setAttribute("UserId", db.GetID(username));
+					session.setAttribute("loginID", db.GetID(username));
+					System.out.println(db.GetID(username));
 					RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/Home.jsp");
 					dispatch.forward(request,response);
 				}

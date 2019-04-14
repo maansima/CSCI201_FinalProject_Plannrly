@@ -11,29 +11,40 @@ if(request.getAttribute("logincheck")!=null) {
 			errorMessage = (String)request.getAttribute("logincheck");
 			System.out.print(errorMessage);
 		}
-}
-%>
+
+}%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="Login.css" />
 <meta charset="UTF-8">
 <title>Login</title>
+<% String error = (String)request.getAttribute("error");
+	if(error!=null){
+		if(error == "password"){%>
+			<script>alert("Error: password is incorrect")</script>
+		<%}
+		else if(error == "taken"){%>
+		<script>alert("Error: username is incorrect")</script>
+		<%}
+		else if(error == "blank"){%>
+		<script>alert("Error: please don't leave any fields blank")</script>
+		<%}
+	}
+%>
 <script>
 window.onload= function(){
 	var userID = <%= session.getAttribute("loginID") %>
-	var error = <%=errorMessage%>
-	if( error != ""){
-		alert(error);
-	}
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
 		document.getElementById("Profile").style.display = "none";
+		document.getElementById("GroupCreation").style.display = "none";
 	}
 	else if (userID!=0){
 		document.getElementById("Login").style.display = "none";
 		document.getElementById("SignUp").style.display = "none";
 		document.getElementById("SignOut").style.display = "initial";
 		document.getElementById("Profile").style.display = "initial";
+		document.getElementById("GroupCreation").style.display = "initial";
 	}
 }
 </script>
@@ -44,7 +55,8 @@ window.onload= function(){
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
-<a id="SignOut" href = "SignOut.jsp">Sign Out</a>
+<a id="GroupCreation" href = "groupcreation.jsp">Create New Group</a>
+<a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 </div>
 
 <div id="container">

@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-	session.setAttribute("loginID", 1);
+	session.setAttribute("loginID", 0);
 	String redirectURL = "Home.jsp";
     response.sendRedirect(redirectURL);
 	

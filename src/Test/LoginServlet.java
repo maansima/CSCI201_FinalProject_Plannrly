@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 			if(result == 1)
 			{
 				request.getSession().setAttribute("login", true);
+				request.getSession().setAttribute("loginID", dh.GetID(username));
 				request.setAttribute("logincheck", "Success");
 				nextPage = "/Profile.jsp";
 			}
@@ -43,18 +44,21 @@ public class LoginServlet extends HttpServlet {
 			{
 				request.getSession().setAttribute("login", false);
 				request.setAttribute("logincheck", "Error: Incorrect Password");
+				request.setAttribute("error", "password");
 				nextPage = "/login.jsp";
 			}
 			else 
 			{
 				request.getSession().setAttribute("login", false);
 				request.setAttribute("logincheck", "Error: Incorrect Username");
+				request.setAttribute("error", "username");
 				nextPage = "/login.jsp";
 			}
 		}
 		else
 		{
 			request.getSession().setAttribute("login", false);
+			request.setAttribute("error", "blank");
 			request.setAttribute("logincheck", "Error: Please don't leave any fields blank");
 			nextPage = "/login.jsp";
 		}

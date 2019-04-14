@@ -16,6 +16,10 @@ body {
 	padding: 10px;
 	padding-right: 30px;
 }
+#GroupCreation{
+	float: right;
+	padding: 10px;
+}
 
 #SignOut {
 	float: right;
@@ -39,7 +43,6 @@ a{
 }
 
 #center{
-  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -53,7 +56,10 @@ a{
 	align-self: center;
 }
 
-
+.submit{
+	margin-right:30%;
+	position:absolute;
+}
 form input{
 	padding: 10px;
 	width: 200px;
