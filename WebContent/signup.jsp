@@ -5,6 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Signup</title>
+<% String error = (String)request.getAttribute("error");
+	if(error!=null){
+		if(error == "same"){%>
+			<script>alert("Error: your passwords must match!")</script>
+		<%}
+		else if(error == "taken"){%>
+		<script>alert("Error: that username is taken!")</script>
+		<%}
+	}
+%>
 <script>
 window.onload= function(){
 	var userID = <%= session.getAttribute("loginID") %>
@@ -29,11 +39,12 @@ window.onload= function(){
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
-</div>
-<form>
-	<input type="text">Username 
-	<input type="text">Password 
-	<input type="submit">Submit 
+</div> 
+<form method = "GET" action="${pageContext.request.contextPath}/ServletSignUp">
+	<input type="text" name="username" placeholder="Username"></br>
+	<input type="text" name = "pass" placeholder ="Password"></br>
+	<input type="text" name ="confirmpass" placeholder ="Confirm Password"></br>
+	<input type="submit" placeholder = "Submit"> 
 </form>
 </body>
 </html>

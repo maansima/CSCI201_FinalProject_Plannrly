@@ -1,10 +1,12 @@
 package Test;
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
 
 public class DatabaseHelper {
 	
@@ -16,7 +18,10 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=Yj26Xcco&serverTimezone=UTC");
+			if(conn == null) {
+				System.out.println("it is null oh uh");
+			}
 	
 		} catch (SQLException sqle) {
 			System.out.println("sqle: " + sqle.getMessage());
@@ -25,8 +30,22 @@ public class DatabaseHelper {
 		}
 		
 	}
+	public int GetID(String username) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT userID FROM User WHERE username=?");
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("UserID");
+		}
+		} catch (SQLException ex) {
+	 		System.out.println("error");
+		}
+		return -1;
+		
+	}
 	
-	public boolean createAccount(String username, String password, String password2) throws SQLException {
+	public boolean createAccount(String username, String password) throws SQLException {
 		boolean check = false;
 		String query = "SELECT COUNT(*) FROM User WHERE username=?";
 		st = conn.prepareStatement(query);
