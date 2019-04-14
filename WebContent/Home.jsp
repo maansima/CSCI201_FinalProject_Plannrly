@@ -12,12 +12,14 @@ window.onload= function(){
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
 		document.getElementById("Profile").style.display = "none";
+		document.getElementById("GroupCreation").style.display = "none";
 	}
 	else if (userID!=0){
 		document.getElementById("Login").style.display = "none";
 		document.getElementById("SignUp").style.display = "none";
 		document.getElementById("SignOut").style.display = "initial";
 		document.getElementById("Profile").style.display = "initial";
+		document.getElementById("GroupCreation").style.display = "initial";
 	}
 }
 </script>
@@ -28,7 +30,8 @@ window.onload= function(){
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
-<a id="SignOut" href = "SignOut.jsp">Sign Out</a>
+<a id="GroupCreation" href = "groupcreation.jsp">Create New Group</a>
+<a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 </div>
 <div id="center">
 <img id="group" src="group.png">
@@ -39,8 +42,10 @@ window.onload= function(){
   <option value="bars">Bars</option>
   <option value="active">Active</option>
   <option value="arts">Arts</option>
-</select>
-<input type="submit"></input>
+</select></br>
+<div class="submit">
+<input type="submit" value="Show me activities!"></input>
+</div>
 </form>
 </div>
 </body>
