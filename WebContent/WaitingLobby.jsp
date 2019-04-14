@@ -6,6 +6,7 @@
 ONLINE MEMBERS IE. NETWORKING PORTION -->
 <!-- DISPLAY INFO FROM THE GROUP DATABASE -->
 <head>
+<link rel="stylesheet" type="text/css" href="WaitingLobby.css" />
 <meta charset="UTF-8">
 <title>Waiting Lobby</title>
 <script>
@@ -25,6 +26,13 @@ window.onload= function(){
 </script>
 </head>
 <body>
+<div id = "header"> 
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a id="Login" href="login.jsp">Login</a>
+<a id="SignUp" href = "signup.jsp">Sign up</a>
+<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<a id="SignOut" href = "SignOut.jsp">Sign Out</a>
+</div>
 
 </body>
 </html>
