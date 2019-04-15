@@ -36,13 +36,27 @@ public class DatabaseHelper {
 		ps.setString(1, username);
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
-			return rs.getInt("UserID");
+			return rs.getInt("userID");
 		}
 		} catch (SQLException ex) {
 	 		System.out.println("error");
 		}
 		return -1;
 		
+	}
+	
+	public String GetUser(Integer ID) {
+		try {
+			PreparedStatement ps = conn.prepareStatement("SELECT username FROM User WHERE userID=?");
+			ps.setInt(1, ID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("username");
+			}
+			} catch (SQLException ex) {
+		 		System.out.println("error");
+			}
+			return null;
 	}
 	
 	public boolean createAccount(String username, String password) throws SQLException {

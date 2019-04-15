@@ -37,6 +37,7 @@ public class LoginServlet extends HttpServlet {
 			{
 				request.getSession().setAttribute("login", true);
 				request.getSession().setAttribute("loginID", dh.GetID(username));
+				System.out.println(dh.GetID(username));
 				request.setAttribute("logincheck", "Success");
 				nextPage = "/Profile.jsp";
 			}
