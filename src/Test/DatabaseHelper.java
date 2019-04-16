@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -43,6 +44,39 @@ public class DatabaseHelper {
 		}
 		return -1;
 		
+	}
+	
+	public ArrayList<String> GetGroups(Integer ID){
+		ArrayList<String> GroupsIn = new ArrayList<String>();
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT groupID FROM GroupMember WHERE userID=?");
+		ps.setInt(1,ID);
+		ResultSet rs = ps.executeQuery();		
+		while(rs.next()) {
+			Integer x =rs.getInt("groupID");
+			GroupsIn.add(GetGroupName(x));
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return GroupsIn;
+	}
+	
+	public String GetGroupName (Integer GroupID) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT groupName FROM GroupInfo WHERE groupID=?");
+		ps.setInt(1,GroupID);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getString("userID");
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String GetUser(Integer ID) {

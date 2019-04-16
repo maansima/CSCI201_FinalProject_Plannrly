@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Profile</title>
 <% ArrayList<String> DayWeek = (ArrayList<String>)request.getAttribute("weekdays");
+	ArrayList<String> Groups = (ArrayList<String>)request.getAttribute("groups");
 %>
 <script>
 window.onload= function(){
@@ -45,9 +46,9 @@ window.onload= function(){
 <div class = "groups" id = "groups" style="visibility: hidden; position:relative;height: 10%;">
   		<p>Group's you are a member of:</p>
   		<div class="member">
-  			<div>Group 1</div> 
-  			<div>Group 2</div>
-  			<div>Group 3</div>
+  		<%for(int i = 0; i<Groups.size();i++){ %>
+  			<div><%=Groups.get(i) %></div> 
+  		<%} %>
  		 </div>
  	 </div>
  <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">

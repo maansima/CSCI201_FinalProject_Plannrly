@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Test.DatabaseHelper;
 
 /**
  * Servlet implementation class ServletProfile
@@ -32,6 +35,10 @@ public class ServletProfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Integer> dayWeek = new ArrayList<Integer>();
 		ArrayList<String> compare = new ArrayList<String> ();
+		ArrayList<String> Groups = new ArrayList<String>();
+		DatabaseHelper db = new DatabaseHelper();
+		HttpSession session = request.getSession();
+		//set calendar
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_MONTH,1);
 		System.out.println(c.getTime());
@@ -64,6 +71,11 @@ public class ServletProfile extends HttpServlet {
 				compare.add("Saturday");
 			}
 		}
+		
+		//set groups
+		Groups = db.GetGroups((Integer)session.getAttribute("loginID"));
+		
+		request.setAttribute("groups", Groups);
 		request.setAttribute("weekdays", compare);
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/Profile.jsp");
 		dispatch.forward(request,response);
