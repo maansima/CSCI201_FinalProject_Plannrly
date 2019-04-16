@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ page import="Test.DatabaseHelper" %>
+     <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Profile</title>
+<% ArrayList<String> DayWeek = (ArrayList<String>)request.getAttribute("weekdays");
+%>
 <script>
 window.onload= function(){
 	var userID = <%= session.getAttribute("loginID") %>
@@ -63,13 +66,13 @@ window.onload= function(){
     </div>
     <div class="calendar" id ="calendar" style="top:28%; position:absolute; width: 80%;">
       <div class="calendar__header">
-        <div>mon</div>
-        <div>tue</div>
-        <div>wed</div>
-        <div>thu</div>
-        <div>fri</div>
-        <div>sat</div>
-        <div>sun</div>
+        <div><%=DayWeek.get(0) %></div>
+        <div><%=DayWeek.get(1) %></div>
+        <div><%=DayWeek.get(2) %></div>
+        <div><%=DayWeek.get(3) %></div>
+        <div><%=DayWeek.get(4) %></div>
+        <div><%=DayWeek.get(5) %></div>
+        <div><%=DayWeek.get(6) %></div>
       </div>
       <div class="calendar__week">
         <div class="calendar__day day">1</div>
@@ -111,10 +114,10 @@ window.onload= function(){
         <div class="calendar__day day">29</div>
         <div class="calendar__day day">30</div>
         <div class="calendar__day day">31</div>
-        <div class="calendar__day day">1</div>
-        <div class="calendar__day day">2</div>
-        <div class="calendar__day day">3</div>
-        <div class="calendar__day day">4</div>
+        <div class="calendar__day day"></div>
+        <div class="calendar__day day"></div>
+        <div class="calendar__day day"></div>
+        <div class="calendar__day day"></div>
       </div>
     </div>
   </main>

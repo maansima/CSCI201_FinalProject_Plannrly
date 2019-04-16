@@ -84,7 +84,7 @@ public class DatabaseHelper {
 		}
 	}
 	
-	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType) throws SQLException {
+	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType, String GroupCreator) throws SQLException {
 		boolean check = false;
 		int memberCount = groupMembers.size();
 		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
@@ -99,7 +99,7 @@ public class DatabaseHelper {
 					+ " values (?,?,?,?,?)";
 			st = conn.prepareStatement(insertQuery);
 			st.setString(1, groupName);
-			st.setInt(2, memberCount);
+			st.setInt(2, memberCount+1);
 			st.setString(3,  location);
 			st.setInt(4, price);
 			st.setString(5, activityType);

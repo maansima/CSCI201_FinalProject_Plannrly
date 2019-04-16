@@ -1,6 +1,7 @@
 package Test;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Vector;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //price, location, type of activity 
 @WebServlet("/groupCreation")
@@ -18,11 +20,13 @@ public class groupCreation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String groupName = request.getParameter("name");
 		String memberNames = request.getParameter("members");
 		String cityName = request.getParameter("cityName");
 		String activityType = request.getParameter("activityType");
 		String price = request.getParameter("price");
+		Integer username = (Integer) session.getAttribute("loginID");
 		DatabaseHelper db = new DatabaseHelper();
 		if(groupName == null || groupName.equals("") || memberNames == null || memberNames.equals("") ||
 				cityName == null || cityName.equals("") || activityType == null || price == null) {
@@ -63,7 +67,7 @@ public class groupCreation extends HttpServlet {
 		}
 				
 		try {
-			db.createGroup(groupName, GroupMembers, cityName, priceInt, activityType);
+			db.createGroup(groupName, GroupMembers, cityName, priceInt, activityType, db.GetUser(username));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
