@@ -34,7 +34,7 @@ window.onload= function(){
 <link rel="stylesheet" type="text/css" href="Profile.css" />
 <body>
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Results.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
