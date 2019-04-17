@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="Test.ServerSocket"%>
+    pageEncoding="UTF-8" import="Test.ServerSocket, Test.DatabaseHelper"%>
 <!DOCTYPE html>
 <html>
 <!-- CAN BE ACCESSED BY ALL GROUP MEMBERS, REDIRECT TO VOTE FROM HERE AND SHOW 
@@ -10,7 +10,14 @@ ONLINE MEMBERS IE. NETWORKING PORTION -->
 <meta charset="UTF-8">
 <title>Waiting Lobby</title>
 <script>
+<%
 
+ 	Integer ID = (Integer) session.getAttribute("loginID");
+    DatabaseHelper db = new DatabaseHelper(); 
+    String name = db.GetUser(ID);
+    System.out.println(name);
+
+%>
 function start() {
 	  displayLinks();
 	  connectToServer();
@@ -43,7 +50,10 @@ function displayLinks(){
 		}
 	}
 	function sendMessage(){
-		socket.send("dog: "+document.form.message.value);
+
+		console.log("name");
+		console.log("<%= name %>");
+		socket.send("<%= name %> : " + document.form.message.value);
 		document.getElementById("message").value = "";
 		return false;
 }
