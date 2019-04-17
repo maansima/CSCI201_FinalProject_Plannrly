@@ -43,7 +43,7 @@ function displayLinks(){
 		}
 	}
 	function sendMessage(){
-		socket.send("cat: "+document.form.message.value);
+		socket.send("dog: "+document.form.message.value);
 		return false;
 }
 </script>
