@@ -40,7 +40,6 @@ public class ServletResults extends HttpServlet {
 		String Location = (String) session.getAttribute("location");
 		List<Business> businesses = new ArrayList<Business>(); 
 		ArrayList<FinalYelpObj> results = (ArrayList<FinalYelpObj>) session.getAttribute("resultList");
-		System.out.println(Activity + Location);
 		for(int i = 0; i<results.size();i++) {
 			businesses = results.get(i).getBusinesses();
 			for(int j = 0; j<businesses.size();j++) {
@@ -52,7 +51,7 @@ public class ServletResults extends HttpServlet {
 				}
 				System.out.println("did not go in");
 			}
-		}
+		}		
 		String Image = business.getImageUrl();
 		String Phone = business.getPhone();
 		String URL = business.getUrl();
