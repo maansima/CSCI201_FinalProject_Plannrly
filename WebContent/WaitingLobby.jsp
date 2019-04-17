@@ -44,6 +44,7 @@ function displayLinks(){
 	}
 	function sendMessage(){
 		socket.send("dog: "+document.form.message.value);
+		document.getElementById("message").value = "";
 		return false;
 }
 </script>
@@ -65,7 +66,7 @@ function displayLinks(){
 	</thead>
 	<tbody id="mychat"> </tbody>	
 </table>
-	<input type="text" name= "message" placeholder="Type a message"/><br>
+	<input type="text" id="message" name= "message" placeholder="Type a message"/><br>
 	<input type="submit" id="button" name="submit" value="Send"/><br>			
 </form>
 </body>
