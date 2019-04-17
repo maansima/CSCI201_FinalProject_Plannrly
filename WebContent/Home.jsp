@@ -30,9 +30,10 @@ window.onload= function(){
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
-<a id="GroupCreation" href = "groupcreation.jsp">Create New Group</a>
+<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 </div>
+
 <div id="center">
 <img id="group" src="group.png">
 <form action="YelpApiTester" method="GET">
@@ -42,7 +43,7 @@ window.onload= function(){
   <option value="bars">Bars</option>
   <option value="active">Active</option>
   <option value="arts">Arts</option>
-</select></br>
+</select>
 <div class="submit">
 <input type="submit" value="Show me activities!"></input>
 </div>
