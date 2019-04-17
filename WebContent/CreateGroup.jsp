@@ -31,7 +31,7 @@
 		<div id="Profile">
 			<a href="Profile.jsp">Profile</a>
 		</div>
-		<a id="SignOut" href="SignOut.jsp">Sign Out</a>
+		<a id="SignOut" href="${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>
 	<img id="group" src="group.png"></img>
 	<div id="container">
@@ -40,7 +40,7 @@
 				Group Name<br> <input type="text" name="name">
 			</div>
 			<div id="memberField" class="child">
-				Member Names<br> <input type="text" name="members">
+				Member Names<br> <input type="text" name="members" placeholder="Member 1, Member 2, ..."/>
 			</div>
 			<div id="cityField" class="child">
 				Where do you want to go?<br> <input name="cityName" type="text"

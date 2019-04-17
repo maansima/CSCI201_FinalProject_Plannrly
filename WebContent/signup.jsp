@@ -43,17 +43,15 @@
 </head>
 <link rel="stylesheet" type="text/css" href="Signup.css" />
 <body>
-	<div id="header">
-		<a href="/Home.jsp"><img id="logo" src="plannrly.jpg"></img></a> <a
-			id="Login" href="login.jsp">Login</a> <a id="SignUp"
-			href="signup.jsp">Sign up</a>
-		<div id="Profile">
-			<a href="Profile.jsp">Profile</a>
-		</div>
 
-		<a id="SignOut" href="SignOut.jsp">Sign Out</a>
-	</div>
-
+<div id = "header"> 
+<a href="/Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a id="Login" href="login.jsp">Login</a>
+<a id="SignUp" href = "signup.jsp">Sign up</a>
+<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
+<a id="SignOut" href = "SignOut.jsp">Sign Out</a>
+</div>
 
 	<a id="GroupCreation" href="groupcreation.jsp">Create New Group</a>
 	<a id="SignOut"

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -36,13 +37,60 @@ public class DatabaseHelper {
 		ps.setString(1, username);
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
-			return rs.getInt("UserID");
+			return rs.getInt("userID");
 		}
 		} catch (SQLException ex) {
 	 		System.out.println("error");
 		}
 		return -1;
 		
+	}
+	
+	public ArrayList<String> GetGroups(Integer ID){
+		ArrayList<String> GroupsIn = new ArrayList<String>();
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT groupID FROM GroupMember WHERE userID=?");
+		ps.setInt(1,ID);
+		ResultSet rs = ps.executeQuery();		
+		while(rs.next()) {
+			Integer x =rs.getInt("groupID");
+			GroupsIn.add(GetGroupName(x));
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return GroupsIn;
+	}
+	
+	public String GetGroupName (Integer GroupID) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT groupName FROM GroupInfo WHERE groupID=?");
+		ps.setInt(1,GroupID);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getString("userID");
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String GetUser(Integer ID) {
+		try {
+			PreparedStatement ps = conn.prepareStatement("SELECT username FROM User WHERE userID=?");
+			ps.setInt(1, ID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("username");
+			}
+			} catch (SQLException ex) {
+		 		System.out.println("error");
+			}
+			return null;
 	}
 	
 	public boolean createAccount(String username, String password) throws SQLException {
@@ -70,7 +118,7 @@ public class DatabaseHelper {
 		}
 	}
 	
-	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType) throws SQLException {
+	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType, String GroupCreator) throws SQLException {
 		boolean check = false;
 		int memberCount = groupMembers.size();
 		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
@@ -85,7 +133,7 @@ public class DatabaseHelper {
 					+ " values (?,?,?,?,?)";
 			st = conn.prepareStatement(insertQuery);
 			st.setString(1, groupName);
-			st.setInt(2, memberCount);
+			st.setInt(2, memberCount+1);
 			st.setString(3,  location);
 			st.setInt(4, price);
 			st.setString(5, activityType);
