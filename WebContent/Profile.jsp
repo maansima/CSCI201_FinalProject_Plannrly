@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Profile</title>
 <% ArrayList<String> DayWeek = (ArrayList<String>)request.getAttribute("weekdays");
-	ArrayList<String> Groups = (ArrayList<String>)request.getAttribute("groups");
 %>
 <script>
 window.onload= function(){
@@ -28,6 +27,7 @@ window.onload= function(){
 }
 </script>
 <% DatabaseHelper db = new DatabaseHelper();
+	ArrayList<String> Groups = db.GetGroups((Integer)session.getAttribute("loginID"));
 	String username = db.GetUser((Integer)session.getAttribute("loginID"));
 	Integer usernameID = (Integer)session.getAttribute("loginID");
 	System.out.println("username: " + usernameID);
@@ -48,9 +48,10 @@ window.onload= function(){
 <div class = "groups" id = "groups" style="visibility: hidden; position:relative;height: 10%;">
   		<p>Group's you are a member of:</p>
   		<div class="member">
+  		<%if (Groups!=null){ %>
   		<%for(int i = 0; i<Groups.size();i++){ %>
   			<div><%=Groups.get(i) %></div> 
-  		<%} %>
+  		<%}} %>
  		 </div>
  	 </div>
  <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
@@ -86,8 +87,11 @@ window.onload= function(){
       			<div class="calendar__day day" style="background-color: #ffb3b3;"><%=num %>
       			<%for(int k = 0;k<db.getActivities(usernameID,num).size();k++){ %>
       				<%if(db.getActivityGroup(db.getActivities(usernameID,num).get(k)) == -1){
+      					String Time = "Morning";
+      					if(db.getActivityTime(db.getActivities(usernameID,num).get(k)) == 2){Time = "Afternoon";}
+      					else if(db.getActivityTime(db.getActivities(usernameID,num).get(k)) == 1){Time = "Night";}				
       				String ActivityName = db.getActivityName(db.getActivities(usernameID,num).get(k));%>
-      					<a href="ServletResults?Value=<%=ActivityName%>"></a>
+      					<br><a style="color:grey;"><%=ActivityName %></a> (Time: <%=Time%>)
       				<%} %>
       			<%} %></div>
       		<%}

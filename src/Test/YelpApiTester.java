@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -86,7 +87,10 @@ public class YelpApiTester extends HttpServlet {
 			request.setAttribute("cityName", empty);
 		}
 		request.setAttribute("resultList", results);
-		RequestDispatcher rd = request.getRequestDispatcher("tinder.jsp");
+
+		HttpSession session = request.getSession();
+		session.setAttribute("resultList", results);
+		RequestDispatcher rd = request.getRequestDispatcher("Activities.jsp");
 		rd.forward(request, response);
 	}
 

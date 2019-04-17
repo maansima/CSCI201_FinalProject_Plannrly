@@ -70,7 +70,7 @@ public class DatabaseHelper {
 		ps.setInt(1,GroupID);
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
-			return rs.getString("userID");
+			return rs.getString("groupName");
 		}
 		}catch(SQLException e) {
 			e.printStackTrace();
