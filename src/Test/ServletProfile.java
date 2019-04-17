@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import Test.DatabaseHelper;
+
 /**
  * Servlet implementation class ServletProfile
  */
@@ -31,7 +34,6 @@ public class ServletProfile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Integer> dayWeek = new ArrayList<Integer>();
 		ArrayList<String> compare = new ArrayList<String> ();
@@ -41,12 +43,9 @@ public class ServletProfile extends HttpServlet {
 		//set calendar
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_MONTH,1);
-		System.out.println(c.getTime());
-
 		for(int i = 0; i<7;i++) {
 			dayWeek.add((c.get(Calendar.DAY_OF_WEEK))); 
 			c.add(Calendar.DATE, 1);
-			System.out.println("Day of Week" + c.get(Calendar.DAY_OF_WEEK));
 		}
 		for(int i = 0; i<7;i++) {
 			if(dayWeek.get(i) == 1) {
@@ -75,6 +74,7 @@ public class ServletProfile extends HttpServlet {
 		//set groups
 		Groups = db.GetGroups((Integer)session.getAttribute("loginID"));
 		
+		
 		request.setAttribute("groups", Groups);
 		request.setAttribute("weekdays", compare);
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/Profile.jsp");
@@ -87,7 +87,6 @@ public class ServletProfile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

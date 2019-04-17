@@ -12,7 +12,12 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <script>
 window.onload= function(){
-	var userID = <%= session.getAttribute("loginID") %>
+	var userID = <%= session.getAttribute("loginID") %>;
+	var Voted = <%=session.getAttribute("voting")%>;
+	if(Voted ==0){
+		document.getElementById("novoting").style.display = "none";
+		 document.getElementById("novoting1").style.display = "none";<
+	}
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
 		document.getElementById("Profile").style.display = "none";
@@ -27,6 +32,19 @@ window.onload= function(){
 	}
 }
 </script>
+<% 	
+	Integer voting = (Integer)request.getAttribute("voting");
+	String Image =(String) request.getAttribute("ImageURL");
+ String Phone = (String)request.getAttribute("PhoneNum");
+ String URL = (String)request.getAttribute("YelpURL");
+ Double Latitude = (Double)request.getAttribute("Latitude");
+ Double Longitude = (Double)request.getAttribute("Longitude");
+ String Price = (String)request.getAttribute("Price");
+ Double Rating = (Double)request.getAttribute("Rating");
+ String Name = (String)request.getAttribute("Name");
+ String Location = (String)request.getAttribute("Location");
+ 
+%>
 </head>
 <style>
 body  {
@@ -76,44 +94,53 @@ a{
 <a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>
-<!-- w3-content defines a container for fixed size centered content, 
-and is wrapped around the whole page content, except for the footer in this example -->
 <div class="w3-content" style="max-width:1400px">
 
 <!-- Header -->
-<header class="w3-container w3-center w3-padding-32"> 
-  <h1><b>The results of <span class="w3-tag">Group's Name</span> vote is...</b></h1>
+<header class="w3-container w3-center w3-padding-32" style="visibility:none;" id = "header"> 
+  <% if(voting!=null){%>
+  <h1><<b>The results of <span style="visibility:none;" class="w3-tag">Group's Name</span> vote is...</b></h1>
+      <%} %>
 </header>
 <!-- Grid -->
 <div class="w3-row">
-<!-- Blog entries -->
+<!-- Activities -->
 <div class="w3-col l8 s12">
-  <!-- Blog entry -->
+  <!-- Activity Info  -->
   <div class="w3-card-4 w3-margin w3-white">
-    <img src="/w3images/woods.jpg" alt="ActivityPic" style="width:60%; positionn:absolute;"> <span><img src="/w3images/woods.jpg" alt="GoogleMapsPic" style="width:25%;position:absolute;"></span>
+    <img src="<%=Image%>" alt="ActivityPic" style="width:400px; max-height:400px; positionn:absolute;"> <span><img src="/w3images/woods.jpg" alt="GoogleMapsPic" style="width:25%;position:absolute;"></span>
     <div class="w3-container">
-      <h3><b>ACTIVITY NAME</b></h3>
-      <h5><span class="w3-opacity"><pre>Type of Activity  $$</pre></span>
+      <h3><b><%=Name %></b></h3>
+      <h5><span class="w3-opacity"><pre><%=Price %></pre></span>
     </div>
-
     <div class="w3-container">
-      <p>Description of the activity</p>
+      <p>Rating: <%=Rating%></p>
+      <p><%=Location%></p>
       <div class="w3-row">
         <div class="w3-col m8 s12">
-          <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE &raquo;</b></button></p>
+          <p><button class="w3-button w3-padding-large w3-white w3-border" onclick="window.location.href='<%=URL%>'"><b>READ MORE &raquo;</b></button></p>
         </div>
         <div class="w3-col m4 w3-hide-small">
-          <p><span class="w3-padding-large w3-right"><b>ADD TO CALENDAR &nbsp;</b></span></p>
+        <%if(voting == null){ %>
+        <form type=GET action="/ServletAddActivity">
+        	<input type="date" style="width:100px;"id="start" name="trip-start"
+      			 placeholder="2019-04-16"
+       			min="2019-04-16" max="2019-04-31"></br>
+       			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="morning" value="Night">Night </span>
+          <p><span class="w3-padding-large w3-right"><button style="border:none; background-color:white;" onclick="submit">ADD TO CALENDAR &nbsp;</button></span></p>
+          </form>
+          <%} %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <hr>
-<!-- END BLOG ENTRIES -->
+<!-- END ACTIVITY INFO -->
 </div>
 
-<!-- Introduction menu -->
-<div class="w3-col l4">
+<!-- Group Members menu -->
+<% if(voting!=null){%>
+<div class="w3-col l4" id ="groups">
   <!-- About Card -->
   <div class="w3-card w3-margin w3-margin-top">
     <div class="w3-container w3-white">
@@ -127,6 +154,7 @@ and is wrapped around the whole page content, except for the footer in this exam
   </div>
 <!-- END Introduction Menu -->
 </div>
+<%} %>
 
 <!-- END GRID -->
 </div><br>

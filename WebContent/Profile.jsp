@@ -29,16 +29,18 @@ window.onload= function(){
 </script>
 <% DatabaseHelper db = new DatabaseHelper();
 	String username = db.GetUser((Integer)session.getAttribute("loginID"));
+	Integer usernameID = (Integer)session.getAttribute("loginID");
+	System.out.println("username: " + usernameID);
 %>
 </head>
 <link rel="stylesheet" type="text/css" href="Profile.css" />
 <body>
 <div id = "header"> 
-<a href="Results.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
-<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
+<a id="GroupCreation" href = "${pageContext.request.contextPath}/ServletResults">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>
 <div class="wrapper">
@@ -75,51 +77,30 @@ window.onload= function(){
         <div><%=DayWeek.get(5) %></div>
         <div><%=DayWeek.get(6) %></div>
       </div>
+     <%for(int i = 0;i<5;i++){%>
       <div class="calendar__week">
-        <div class="calendar__day day">1</div>
-        <div class="calendar__day day">2</div>
-        <div class="calendar__day day">3</div>
-        <div class="calendar__day day">4</div>
-        <div class="calendar__day day">5</div>
-        <div class="calendar__day day">6</div>
-        <div class="calendar__day day">7</div>
+      <%for(int j = 1;j<8;j++){ 
+      Integer num = j + i*7;
+      	if(num<31){
+      		if(db.getActivities(usernameID,num).size()>0){%>	
+      			<div class="calendar__day day" style="background-color: #ffb3b3;"><%=num %>
+      			<%for(int k = 0;k<db.getActivities(usernameID,num).size();k++){ %>
+      				<%if(db.getActivityGroup(db.getActivities(usernameID,num).get(k)) == -1){
+      				String ActivityName = db.getActivityName(db.getActivities(usernameID,num).get(k));%>
+      					<a href="ServletResults?Value=<%=ActivityName%>"></a>
+      				<%} %>
+      			<%} %></div>
+      		<%}
+      		else{%>	
+        	<div class="calendar__day day"><%=num %></div>
+        	<%}%>
+        <%}
+      	if(num>=31){ num = num-30;%>
+        <div class="calendar__day day"><%=num%></div>
+        <%}}%>
       </div>
-      <div class="calendar__week">
-        <div class="calendar__day day">8</div>
-        <div class="calendar__day day">9</div>
-        <div class="calendar__day day">10</div>
-        <div class="calendar__day day">11</div>
-        <div class="calendar__day day">12</div>
-        <div class="calendar__day day">13</div>
-        <div class="calendar__day day">14</div>        
-      </div>
-      <div class="calendar__week">
-        <div class="calendar__day day">15</div>
-        <div class="calendar__day day">16</div>
-        <div class="calendar__day day">17</div>
-        <div class="calendar__day day">18</div>
-        <div class="calendar__day day">19</div>
-        <div class="calendar__day day">20</div>
-        <div class="calendar__day day">21</div>    
-      </div>
-      <div class="calendar__week">
-        <div class="calendar__day day">22</div>
-        <div class="calendar__day day">23</div>
-        <div class="calendar__day day">24</div>
-        <div class="calendar__day day">25</div>
-        <div class="calendar__day day">26</div> 
-        <div class="calendar__day day">27</div> 
-        <div class="calendar__day day">28</div> 
-      </div>
-      <div class="calendar__week">
-        <div class="calendar__day day">29</div>
-        <div class="calendar__day day">30</div>
-        <div class="calendar__day day">31</div>
-        <div class="calendar__day day"></div>
-        <div class="calendar__day day"></div>
-        <div class="calendar__day day"></div>
-        <div class="calendar__day day"></div>
-      </div>
+      <%} %>
+      
     </div>
   </main>
   </div>
