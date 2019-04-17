@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="Test.ServerSocket"%>
 <!DOCTYPE html>
 <html>
 <!-- CAN BE ACCESSED BY ALL GROUP MEMBERS, REDIRECT TO VOTE FROM HERE AND SHOW 
@@ -24,8 +24,27 @@ window.onload= function(){
 	}
 }
 </script>
+<script type="text/javascript">
+			var socket
+			function connectToServer(){
+				socket = new WebSocket("ws://localhost:8080/Plannerly/chat2");
+				socket.onopen = function(event){
+					document.getElementById("myChat").innerHTML +="Connected!<br>"; 
+				}
+				socket.onmessage= function(event){
+					document.getElementById("myChat").innerHTML += event.data+"<br>"; 
+				}
+				socket.onclose= function(event){
+					document.getElementById("myChat").innerHTML +="Disconnected!<br>";
+				}
+			}
+			function sendMessage(){
+				socket.send("Smooky: "+document.form.message.value);
+				return false;
+			}
+		</script>
 </head>
-<body>
+<body onload="connectToServer()">
 <div id = "header"> 
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
@@ -33,6 +52,10 @@ window.onload= function(){
 <div id="Profile"><a href="Profile.jsp">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
-
+<form name="form" onsubmit="return sendMessage()">
+			<input type="text" name= "message"/><br>
+			<input type="submit" name="submit" value="send message"/><br>			
+		</form>
+		<div id="myChat"></div>
 </body>
 </html>
