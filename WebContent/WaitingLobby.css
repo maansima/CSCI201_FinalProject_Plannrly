@@ -37,3 +37,17 @@ a{
 	text-decoration: none;
 	color: black; 
 }
+table{
+	position:absolute;
+	left:50%;
+	table-layout: auto;
+	border-collapse: collapse;
+    font-size: 20pt;
+    background: white;
+    color:black;
+    display: block;
+  	height: 13em;
+  	overflow-y: scroll;
+  	font-weight: bold;
+  	z-index: 2;
+}

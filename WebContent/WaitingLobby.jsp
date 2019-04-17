@@ -31,25 +31,24 @@ function displayLinks(){
 }
 	var socket
 	function connectToServer(){
-		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
+		socket = new WebSocket("ws://localhost:8080/Plannerly/chat2");
 		socket.onopen = function(event){
 			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
 		}
 		socket.onmessage= function(event){
-			document.getElementById("mychat").innerHTML +=“<tr> <td>” + event.data + “</td> </tr>”; 
+			document.getElementById("mychat").innerHTML +=("<tr><td>" + event.data + "</td></tr>"); 
 		}
 		socket.onclose= function(event){
 			document.getElementById("mychat").innerHTML +="Disconnected!<br>";
 		}
 	}
 	function sendMessage(){
-		socket.send("Smooky: "+document.form.message.value);
+		socket.send("cat: "+document.form.message.value);
 		return false;
 }
-window.onload = start;
 </script>
 </head>
-<body>
+<body onload = "start()">
 <div id = "header"> 
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
