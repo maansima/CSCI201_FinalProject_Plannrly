@@ -10,7 +10,13 @@ ONLINE MEMBERS IE. NETWORKING PORTION -->
 <meta charset="UTF-8">
 <title>Waiting Lobby</title>
 <script>
-window.onload= function(){
+
+function start() {
+	  displayLinks();
+	  connectToServer();
+	}
+	
+function displayLinks(){
 	var userID = <%= session.getAttribute("loginID") %>
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
@@ -23,28 +29,27 @@ window.onload= function(){
 		document.getElementById("Profile").style.display = "initial";
 	}
 }
+	var socket
+	function connectToServer(){
+		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
+		socket.onopen = function(event){
+			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
+		}
+		socket.onmessage= function(event){
+			document.getElementById("mychat").innerHTML +=“<tr> <td>” + event.data + “</td> </tr>”; 
+		}
+		socket.onclose= function(event){
+			document.getElementById("mychat").innerHTML +="Disconnected!<br>";
+		}
+	}
+	function sendMessage(){
+		socket.send("Smooky: "+document.form.message.value);
+		return false;
+}
+window.onload = start;
 </script>
-<script type="text/javascript">
-			var socket
-			function connectToServer(){
-				socket = new WebSocket("ws://localhost:8080/Plannerly/chat2");
-				socket.onopen = function(event){
-					document.getElementById("myChat").innerHTML +="Connected!<br>"; 
-				}
-				socket.onmessage= function(event){
-					document.getElementById("myChat").innerHTML += event.data+"<br>"; 
-				}
-				socket.onclose= function(event){
-					document.getElementById("myChat").innerHTML +="Disconnected!<br>";
-				}
-			}
-			function sendMessage(){
-				socket.send("Smooky: "+document.form.message.value);
-				return false;
-			}
-		</script>
 </head>
-<body onload="connectToServer()">
+<body>
 <div id = "header"> 
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
@@ -53,9 +58,14 @@ window.onload= function(){
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 <form name="form" onsubmit="return sendMessage()">
-			<input type="text" name= "message"/><br>
-			<input type="submit" name="submit" value="send message"/><br>			
-		</form>
-		<div id="myChat"></div>
+<table>
+	<tr>
+		<th><span class=“text”>Chat </span></th>	
+	</tr>
+	<tbody id="mychat"> </tbody>	
+</table>
+	<input type="text" name= "message"/><br>
+	<input type="submit" name="submit" value="send message"/><br>			
+</form>
 </body>
 </html>
