@@ -3,7 +3,6 @@ package Test;
 import java.io.IOException;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpSession;
 public class groupCreation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String groupName = request.getParameter("name");
@@ -67,9 +67,9 @@ public class groupCreation extends HttpServlet {
 		}
 				
 		try {
-			db.createGroup(groupName, GroupMembers, cityName, priceInt, activityType, db.GetUser(username));
+			db.createGroup(groupName, GroupMembers, cityName, priceInt, activityType);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("error in creating group : " + e.getMessage());
 		}
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/WaitingLobby.jsp");
 		dispatch.forward(request,response);
@@ -78,6 +78,7 @@ public class groupCreation extends HttpServlet {
 	}
 
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

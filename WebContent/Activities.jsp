@@ -10,7 +10,7 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 <meta charset="UTF-8">
 <title>Activities!</title>
 <script>
-window.onload= function(){
+window.onload= function(){	
 	var userID = <%= session.getAttribute("loginID") %>
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
@@ -37,6 +37,7 @@ window.onload= function(){
 <a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>
+	<div id="errorMessage"></div>
 	<table>
 		<tr>
 			<th>Activity</th>
@@ -45,6 +46,7 @@ window.onload= function(){
 		</tr>
 		<%
 			ArrayList<FinalYelpObj> activitiesList = (ArrayList<FinalYelpObj>) request.getAttribute("resultList");
+			if(activitiesList != null){
 			for (FinalYelpObj i : activitiesList) {
 				for (Business j : i.getBusinesses()) {
 					out.println("<tr>");
@@ -52,6 +54,7 @@ window.onload= function(){
 					out.println("<td>" + j.getPrice() + "</td>");
 					out.println("</tr>");
 				}
+			}
 			}
 		%>
 	</table>

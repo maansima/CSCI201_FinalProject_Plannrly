@@ -31,9 +31,14 @@ public class YelpApiTester extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cityName = request.getParameter("cityName");
 		String activityType = request.getParameter("activityType");
+		if(cityName == "" || activityType == "") {
+			RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+			rd.forward(request, response);
+		}
 		System.out.println(activityType);
 		StringBuilder sb = new StringBuilder(); //for Json response
 		ArrayList<FinalYelpObj> results = new ArrayList<FinalYelpObj>(); // array for yelp results 

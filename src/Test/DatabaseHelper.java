@@ -19,7 +19,7 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=Yj26Xcco&serverTimezone=UTC");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234&serverTimezone=UTC");
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -38,6 +38,21 @@ public class DatabaseHelper {
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
 			return rs.getInt("userID");
+		}
+		} catch (SQLException ex) {
+	 		System.out.println("error");
+		}
+		return -1;
+		
+	}
+	
+	public int GetGroupID(String groupName) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT groupID FROM GroupInfo WHERE groupName=?");
+		ps.setString(1, groupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("groupID");
 		}
 		} catch (SQLException ex) {
 	 		System.out.println("error");
@@ -118,7 +133,7 @@ public class DatabaseHelper {
 		}
 	}
 	
-	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType, String GroupCreator) throws SQLException {
+	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType) throws SQLException {
 		boolean check = false;
 		int memberCount = groupMembers.size();
 		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
@@ -129,6 +144,7 @@ public class DatabaseHelper {
 			check = (rs.getInt(1) == 0); //verifies that no group of this name currently exists
 		}
 		if(check) {
+			//add group to group table
 			String insertQuery = "INSERT INTO GroupInfo (groupName, memberCount, location, price, activityType)"
 					+ " values (?,?,?,?,?)";
 			st = conn.prepareStatement(insertQuery);
@@ -138,6 +154,12 @@ public class DatabaseHelper {
 			st.setInt(4, price);
 			st.setString(5, activityType);
 			st.executeUpdate();
+			
+			//add all the members into the group members list 
+			for(int i = 0; i < groupMembers.size(); i++) {
+				joinGroup(groupName, groupMembers.get(i));
+			}
+
 			return true;
 		}
 		return false;
@@ -192,8 +214,11 @@ public class DatabaseHelper {
 			String insertQuery = "INSERT INTO GroupMember (userID, groupID)"
 					+ "values(?, ?)";
 			st = conn.prepareStatement(insertQuery);
-			st.setString(1, username);
-			st.setString(2, groupName);
+			//get user ID
+			int userId = GetID(username);
+			int groupId = GetGroupID(groupName);
+			st.setInt(1, userId);
+			st.setInt(2, groupId);
 			st.executeUpdate();
 			return true;
 		}
@@ -209,5 +234,7 @@ public class DatabaseHelper {
 		st.executeUpdate();
 		return true;
 	}
+	
+	
 
 }

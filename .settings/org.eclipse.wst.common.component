@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Plannerly">
+    <wb-module deploy-name="Plannrly">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="mysql-connector-java-8.0.15.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/Cat/OneDrive - University of Southern California/cathleey_CSCI201_HW3/mysql-connector-java-8.0.15.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <property name="context-root" value="Plannerly"/>
-        <property name="java-output-path" value="/Plannerly/build/classes"/>
+        <property name="java-output-path" value="/Plannrly/build/classes"/>
+        <property name="context-root" value="Plannrly"/>
     </wb-module>
 </project-modules>

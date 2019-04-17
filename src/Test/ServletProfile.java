@@ -1,3 +1,4 @@
+package Test;
 
 
 import java.io.IOException;
@@ -11,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Test.DatabaseHelper;
 
 /**
  * Servlet implementation class ServletProfile
@@ -32,6 +31,7 @@ public class ServletProfile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Integer> dayWeek = new ArrayList<Integer>();
 		ArrayList<String> compare = new ArrayList<String> ();
@@ -87,6 +87,7 @@ public class ServletProfile extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
