@@ -31,7 +31,7 @@ function displayLinks(){
 }
 	var socket
 	function connectToServer(){
-		socket = new WebSocket("ws://localhost:8080/Plannerly/chat2");
+		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
 		socket.onopen = function(event){
 			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
 		}
@@ -57,14 +57,16 @@ function displayLinks(){
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 <form name="form" onsubmit="return sendMessage()">
-<table>
+<table class="fixed_header">
+	<thead>
 	<tr>
 		<th><span class=“text”>Chat </span></th>	
 	</tr>
+	</thead>
 	<tbody id="mychat"> </tbody>	
 </table>
-	<input type="text" name= "message"/><br>
-	<input type="submit" name="submit" value="send message"/><br>			
+	<input type="text" name= "message" placeholder="Type a message"/><br>
+	<input type="submit" id="button" name="submit" value="Send"/><br>			
 </form>
 </body>
 </html>

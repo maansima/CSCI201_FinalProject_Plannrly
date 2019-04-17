@@ -37,7 +37,28 @@ a{
 	text-decoration: none;
 	color: black; 
 }
-table{
+
+.fixed_header tbody{
+  display:block;
+  overflow:auto;
+  height:70vh;
+  width:20vw;
+  border: 1px solid black;
+}
+.fixed_header thead tr{
+  display:block;
+  width:20vw;
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+#button {
+	border-radius: 12px;
+}
+/* table{
 	position:absolute;
 	left:50%;
 	table-layout: auto;
@@ -50,4 +71,4 @@ table{
   	overflow-y: scroll;
   	font-weight: bold;
   	z-index: 2;
-}
+} */
