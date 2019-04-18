@@ -80,7 +80,7 @@ function hover(element) {
   		<div class="member">
   			<%if (notifications != null){ %>
   		<%for(int i = 0; i<notifications.size();i++){ %>
-  			<p><%=notifications.get(i) %></p>
+  			<a href="<%=notifications.get(i)%>">Click here to go see the winner of your group vote!</a>
   		<%}
   		} %>
  		 </div>
