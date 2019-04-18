@@ -22,6 +22,7 @@ function start() {
 	  displayLinks();
 	  connectToServer();
 	}
+	useSSL=false
 	
 function displayLinks(){
 	var userID = <%= session.getAttribute("loginID") %>
@@ -38,7 +39,7 @@ function displayLinks(){
 }
 	var socket
 	function connectToServer(){
-		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
+		socket = new WebSocket("ws://gateway:8080/Plannerly/chat2");
 		socket.onopen = function(event){
 			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
 		}

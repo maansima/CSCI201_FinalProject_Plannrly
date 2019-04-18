@@ -16,6 +16,23 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 $.mobile.autoInitializePage = false;
 var array = '';
 var timesVoted =0;
+
+window.onload= function(){
+	var userID = <%= session.getAttribute("loginID") %>
+	if(userID == 0){
+		document.getElementById("SignOut").style.display = "none";
+		document.getElementById("Profile").style.display = "none";
+		document.getElementById("GroupCreation").style.display = "none";
+	}
+	else if (userID!=0){
+		document.getElementById("Login").style.display = "none";
+		document.getElementById("SignUp").style.display = "none";
+		document.getElementById("SignOut").style.display = "initial";
+		document.getElementById("Profile").style.display = "initial";
+		document.getElementById("GroupCreation").style.display = "initial";
+	}
+}
+
 	$(document)
 			.ready(
 					function() {

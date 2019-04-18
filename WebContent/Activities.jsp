@@ -57,8 +57,14 @@ function hover(element) {
 			if(activitiesList != null){
 			for (FinalYelpObj i : activitiesList) {
 				for (Business j : i.getBusinesses()) {
+					String name = j.getName().replaceAll(" ", "%");;
+					String URL = "ServletResults?Value="+name;
+					if((Integer)session.getAttribute("loginID") == 0){
+						 URL = j.getUrl();
+	
+					}
 					out.println("<tr>");
-					out.println("<td><a href="+j.getUrl()+">" + j.getName() + "</a></td>");
+					out.println("<td><a href="+URL+">" + j.getName() + "</a></td>");
 					out.println("<td>" + j.getPrice() + "</td>");
 					out.println("</tr>");
 				}

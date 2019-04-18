@@ -20,7 +20,7 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234&serverTimezone=UTC");
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -304,6 +304,32 @@ public class DatabaseHelper {
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
 			return rs.getInt("Time");
+		}
+		}catch (SQLException ex) {
+	 		System.out.println("error Act");
+		}
+		return null;
+	}
+	public String getActivityAddress(Integer IDAct) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT Time FROM Activities WHERE idActivities=?");
+		ps.setInt(1, IDAct);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			return rs.getString("Address");
+		}
+		}catch (SQLException ex) {
+	 		System.out.println("error Act");
+		}
+		return null;
+	}
+	public String getActivityPrice(Integer IDAct) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT Time FROM Activities WHERE idActivities=?");
+		ps.setInt(1, IDAct);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			return rs.getString("Price");
 		}
 		}catch (SQLException ex) {
 	 		System.out.println("error Act");
