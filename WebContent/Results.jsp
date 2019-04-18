@@ -143,8 +143,11 @@ a{
 
 <!-- Header -->
 <header class="w3-container w3-center w3-padding-32" style="visibility:none;" id = "header"> 
-  <% if(voting!=null){%>
+  <% if(GroupName!=null){%>
   <h1><<b>The results of <span style="visibility:none;" class="w3-tag"><%=GroupName%></span>'s vote is...</b></h1>
+      <%} %>
+        <% if(GroupName==null){%>
+  <h1><b> <span style="visibility:none;" class="w3-tag"><%=Name%></span></b></h1>
       <%} %>
 </header>
 <!-- Grid -->
@@ -203,7 +206,7 @@ function initMap() {
 </div>
 
 <!-- Group Members menu -->
-<% if(voting!=null){%>
+<% if(GroupName!=null){%>
 <div class="w3-col l4" id ="groups">
   <!-- About Card -->
   <div class="w3-card w3-margin w3-margin-top">

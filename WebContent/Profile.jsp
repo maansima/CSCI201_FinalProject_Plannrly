@@ -70,7 +70,7 @@ function hover(element) {
   		<div class ="listI">
   		<%if (Groups!=null){ %>
   		<%for(int i = 0; i<Groups.size();i++){ %>
-  			<a href="/Plannrly/WaitingLobby?groupName=<%=Groups.get(i)%>"><%=Groups.get(i) %></a> <br>
+  			<a href="WaitingLobby?groupName=<%=Groups.get(i)%>"><%=Groups.get(i) %></a> <br>
   		<%}} %>
   		</div>
  		 </div>

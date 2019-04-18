@@ -54,7 +54,7 @@ function hover(element) {
 <div id="form">
 <form action="YelpApiTester" method="GET">
 <div id="inputs">
-<div id="child">
+<div id="child" >
 <input name="cityName" type="text" placeholder="Where do you want to go?"></input>
 <select name="activityType">
   <option value="food">Food</option>
