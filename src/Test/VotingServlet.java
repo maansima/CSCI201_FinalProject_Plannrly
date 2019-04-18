@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -87,7 +88,11 @@ public class VotingServlet extends HttpServlet {
 			    	   maxVote=(String)pair.getKey();
 			       }
 			    }
-			    String link = "ServerResults?Value="+maxVote+"&GroupName="+groupName;
+			    String finalVote = maxVote.trim();
+				finalVote = finalVote.replaceAll("\\s", "%");
+				groupName = groupName.trim();
+				groupName = groupName.replaceAll("\\s", "%");
+			    String link = "/Plannrly/ServerResults?Value="+finalVote+"&GroupName="+groupName;
 			    try {
 					db.createNotification(link);
 				} catch (SQLException e) {
@@ -95,7 +100,8 @@ public class VotingServlet extends HttpServlet {
 					System.out.println(e.getMessage());
 				}
 		}
-		
+		RequestDispatcher pd = request.getRequestDispatcher("/ServletProfile");
+		pd.forward(request, response);
 	}
 
 	/**
