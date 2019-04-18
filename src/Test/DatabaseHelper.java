@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.servlet.http.HttpSession;
+
 public class DatabaseHelper {
 	
 	private Connection conn = null;
@@ -132,7 +134,7 @@ public class DatabaseHelper {
 		}
 	}
 	
-	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType) throws SQLException {
+	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType, String groupOwner) throws SQLException {
 		boolean check = false;
 		int memberCount = groupMembers.size();
 		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
@@ -153,9 +155,15 @@ public class DatabaseHelper {
 			st.setString(5, activityType);
 			st.executeUpdate();
 			
+			//adding all the members in 
+			
 			for(int i = 0; i < groupMembers.size(); i++) {
 				joinGroup(groupName, groupMembers.get(i));
 			}
+			
+			
+			//get current user and add them too
+			joinGroup(groupName, groupOwner);
 			
 			return true;
 			
