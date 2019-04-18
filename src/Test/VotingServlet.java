@@ -1,6 +1,7 @@
 package Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,8 +42,21 @@ public class VotingServlet extends HttpServlet {
 			dataString+=s+",";
 		}
 		dataString = dataString.substring(0, dataString.length()-1);
-		//add to database here
-		
+		DatabaseHelper db = new DatabaseHelper();
+		db.addVoted(dataString);
+		int voteCount=0;
+		try {
+			voteCount =db.getVotedCount();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int memberCount = new DatabaseHelper().GetMemberCount(groupName);
+		System.out.println(memberCount+":"+voteCount);
+		//check if amount of 
+		if(memberCount==voteCount) {
+			
+		}
 		
 	}
 
