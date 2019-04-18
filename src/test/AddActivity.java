@@ -4,7 +4,6 @@ package Test;
 import java.io.IOException;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,8 +53,6 @@ public class AddActivity extends HttpServlet {
 		Integer LoginID = (Integer)session.getAttribute("loginID");
 		System.out.println(LoginID);
 		db.addActivity(ActivityName, LoginID, ActivityTime, ActivityDay);
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("ServletProfile");
-		dispatch.forward(request,response);
 
 		
 		// TODO Auto-generated method stub
