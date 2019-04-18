@@ -22,7 +22,8 @@ public class DatabaseHelper {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234");
+
 
 			if(conn == null) {
 				System.out.println("it is null oh uh");
