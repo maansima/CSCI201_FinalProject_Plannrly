@@ -55,20 +55,16 @@ a{
 	font-size: 30px;
 }
 
-#left {
-	height:70vh;
-  	width:20vw;
-}
-
-#right {
-	float: right;
-/* 	margin-right: -900px; */
-	width: 900px;
-	height: 900px;
+#dots{
+	position:absolute;
+	right:30%;
+	top:30%;
+	margin:0;
 }
 
 #waiting {
 	text-align: center;
+	right:10%;
 }
 table {
 	border-collapse: collapse;

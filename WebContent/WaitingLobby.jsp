@@ -39,7 +39,7 @@ function displayLinks(){
 }
 	var socket
 	function connectToServer(){
-		socket = new WebSocket("ws://gateway:8080/Plannerly/chat2");
+		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
 		socket.onopen = function(event){
 			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
 		}
@@ -89,11 +89,10 @@ function displayLinks(){
 	<input type="submit" id="button" name="submit" value="Send"/><br>			
 </form>
 </div>
-<div id = "right" >
-<div id="waiting" >
+<div id="dots">
 <p> Waiting for team members to connect </p>
 <span id="wait">.</span>
-
+</div>
 <script>
     window.dotsGoingUp = true;
     var dots = window.setInterval( function() {
