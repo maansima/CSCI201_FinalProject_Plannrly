@@ -89,10 +89,10 @@ public class VotingServlet extends HttpServlet {
 			       }
 			    }
 			    String finalVote = maxVote.trim();
-				finalVote = finalVote.replaceAll("\\s", "%");
+				finalVote = finalVote.replaceAll("\\s", "*");
 				groupName = groupName.trim();
-				groupName = groupName.replaceAll("\\s", "%");
-			    String link = "/Plannrly/ServerResults?Value="+finalVote+"&GroupName="+groupName;
+				groupName = groupName.replaceAll("\\s", "*");
+			    String link = "/Plannrly/ServletResults?Value="+finalVote+"&GroupName="+groupName;
 			    try {
 					db.createNotification(link);
 				} catch (SQLException e) {
