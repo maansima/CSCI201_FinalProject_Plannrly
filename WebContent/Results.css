@@ -31,6 +31,12 @@ body {
 	padding-right: 30px;
 }
 
+#GroupCreation{
+	float: right;
+	padding: 10px;
+	padding-right: 20px;
+}
+
 a{
 	text-decoration: none;
 	color: black; 
