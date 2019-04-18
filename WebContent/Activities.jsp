@@ -57,7 +57,7 @@ function hover(element) {
 			if(activitiesList != null){
 			for (FinalYelpObj i : activitiesList) {
 				for (Business j : i.getBusinesses()) {
-					String name = j.getName().replaceAll(" ", "%");;
+					String name = j.getName().replace(" ", "*");
 					String URL = "ServletResults?Value="+name;
 					if((Integer)session.getAttribute("loginID") == 0){
 						 URL = j.getUrl();

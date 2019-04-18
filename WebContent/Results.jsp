@@ -55,6 +55,9 @@ function hover(element) {
 %>
 </head>
 <style>
+.container{
+display:flex;
+}
 body  {
 	height: 100%; 
 	width: 100%;
@@ -91,6 +94,31 @@ body  {
 a{
 	text-decoration: none;
 	color: black; 
+	}
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 425px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      htmlmap, bodymap {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
 }
 </style>
 <body>
@@ -116,59 +144,30 @@ a{
 <div class="w3-col l8 s12">
   <!-- Activity Info  -->
   <div class="w3-card-4 w3-margin w3-white">
-    <img src="<%=Image%>" alt="ActivityPic" style="width:400px; max-height:400px; positionn:absolute;"> <span>
-    <div id="floating-panel">
-    <b>Mode of Travel: </b>
-    <select id="mode">
-      <option value="DRIVING">Driving</option>
-      <option value="WALKING">Walking</option>
-      <option value="BICYCLING">Bicycling</option>
-      <option value="TRANSIT">Transit</option>
-    </select>
-    </div>
-    <div id="map"></div>
+    <div class="container" style="display:in-line;">
+   <span><img src="<%=Image%>" alt="ActivityPic" style="width:400px; max-height:400px;"> 
+    <div id="map" style="width:400px;max-height:400px;position:relative; margin-right: 40px;"></div>
     <script>
-      function initMap() {
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var directionsService = new google.maps.DirectionsService;
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          //change center to vars lat and lng that are in btw star and end address
-          center: {lat: 37.77, lng: -122.447}
-        });
-        directionsDisplay.setMap(map);
-
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
-        document.getElementById('mode').addEventListener('change', function() {
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
-        });
-      }
-
-      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var selectedMode = document.getElementById('mode').value;
-        directionsService.route({
-        	//var originin and destination need to be passed in as a var
-          origin: {lat: 37.77, lng: -122.447},  // Haight.
-          destination: {lat: 37.768, lng: -122.511},  // Ocean Beach.
-          // Note that Javascript allows us to access the constant
-          // using square brackets and a string value as its
-          // "property."
-          travelMode: google.maps.TravelMode[selectedMode]
-        }, function(response, status) {
-          if (status == 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: <%=Latitude%>, lng: <%=Longitude%>};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHJyoIlrEsW-fR_x3YfRpwAUqpUAvqs6k&callback=initMap" style="width:25%;position:absolute;">
-    </script>
-    </span>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHJyoIlrEsW-fR_x3YfRpwAUqpUAvqs6k&callback=initMap">
+    </script></span> </div>
     <div class="w3-container">
       <h3><b><%=Name %></b></h3>
-      <h5><span class="w3-opacity"><pre><%=Price %></pre></span>
+      <h5><span class="w3-opacity"><pre><%=Price %></pre></span></h5>
     </div>
     <div class="w3-container">
       <p>Rating: <%=Rating%></p>
@@ -182,7 +181,7 @@ a{
         <form type=GET action="/ServletAddActivity">
         	<input type="date" style="width:100px;"id="start" name="trip-start"
       			 placeholder="2019-04-16"
-       			min="2019-04-16" max="2019-04-31"></br>
+       			min="2019-04-16" max="2019-04-31"><br>
        			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="morning" value="Night">Night </span>
           <p><span class="w3-padding-large w3-right"><button style="border:none; background-color:white;" onclick="submit">ADD TO CALENDAR &nbsp;</button></span></p>
           </form>
