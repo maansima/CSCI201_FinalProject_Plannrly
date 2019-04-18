@@ -72,14 +72,14 @@ function hover(element) {
   		</div>
  		 </div>
  	 </div>
-<!--  <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
+<div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
   		<p>Pending Notifications:</p>
   		<div class="member">
   			<div>Notification 1</div> 
   			<div>Notification 2</div>
   			<div>Notification 3</div>
  		 </div>
- 	 </div> -->
+ 	 </div> 
   <main>
     <div class="toolbar" id = "toolbar" style="position:absolute; top: 20%;">
       <div id ="toggle" class="toggle">
@@ -141,9 +141,9 @@ function hover(element) {
       <div class="menu__item menu__item--active">
         <button id="button" style="border:none;background-color:white;background-color:none;font-family: Futura; font-size:16px;" class="menu__text" onclick="Groups()">Groups</button>
       </div>
-     <!--  <div class="menu__item menu__item--active">
+     <div class="menu__item menu__item--active">
         <button id="button" style="border:none;background-color:white;background-color:none;font-family: Futura; font-size:16px;"class="menu__text" onclick="Notifications()">Notifications</button>
-      </div> -->
+      </div>
     </nav>
   </sidebar>
   <script>
