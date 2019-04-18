@@ -79,5 +79,10 @@ table {
 	border-radius: 12px;
 }
 
+.groupDetails { 
+	top: 30%; 
+	right: 50%; 
+}
+
 a:hover{color:#EED2EA};
 
