@@ -81,7 +81,7 @@
       }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=GETKEYFROMGIOVANA&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHJyoIlrEsW-fR_x3YfRpwAUqpUAvqs6k&callback=initMap">
     </script>
   </body>
 </html>

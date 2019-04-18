@@ -36,8 +36,7 @@ public class ServletResults extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String Activity = (String)request.getParameter("Value");
-		System.out.println("Activity1:" + Activity);
-		Activity = Activity.replaceAll("%", " ");
+		Activity = Activity.replace("*", " ");
 		Business business = new Business();
 		List<Business> businesses = new ArrayList<Business>(); 
 		ArrayList<FinalYelpObj> results = (ArrayList<FinalYelpObj>) session.getAttribute("resultList1");
@@ -46,7 +45,7 @@ public class ServletResults extends HttpServlet {
 			businesses = results.get(i).getBusinesses();
 			for(int j = 0; j<businesses.size();j++) {
 				System.out.println("Business name: " + businesses.get(j).getName());
-				if(((businesses.get(j)).getName().toLowerCase().trim()).contentEquals(Activity.toLowerCase())) {
+				if(((businesses.get(j)).getName().toLowerCase().trim()).contentEquals(Activity.toLowerCase().trim())) {
 					System.out.println("Did go in!");
 					business = businesses.get(j).withName(Activity);
 					break;

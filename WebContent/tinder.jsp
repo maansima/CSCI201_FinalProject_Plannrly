@@ -14,6 +14,24 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 <script>
 
 $.mobile.autoInitializePage = false;
+var array = '';
+var timesVoted =0;
+
+window.onload= function(){
+	var userID = <%= session.getAttribute("loginID") %>
+	if(userID == 0){
+		document.getElementById("SignOut").style.display = "none";
+		document.getElementById("Profile").style.display = "none";
+		document.getElementById("GroupCreation").style.display = "none";
+	}
+	else if (userID!=0){
+		document.getElementById("Login").style.display = "none";
+		document.getElementById("SignUp").style.display = "none";
+		document.getElementById("SignOut").style.display = "initial";
+		document.getElementById("Profile").style.display = "initial";
+		document.getElementById("GroupCreation").style.display = "initial";
+	}
+}
 
 	$(document)
 			.ready(
@@ -23,11 +41,18 @@ $.mobile.autoInitializePage = false;
 								.on(
 										"swiperight",
 										function() {
+											timesVoted++;
 											$(this).addClass('rotate-left')
 													.delay(700).fadeOut(1);
 											$('.buddy').find('.status')
 													.remove();
-
+											var index = $(this).index()+1;
+											array+=(document.getElementById("placeName"+index).innerText +",");
+											document.getElementById('hiddenField').value = array;
+											if(timesVoted==5){
+												alert("All Done Voting!");
+												document.hiddenForm.submit();
+											}
 											$(this)
 													.append(
 															'<div class="status like">Like!</div>');
@@ -36,6 +61,7 @@ $.mobile.autoInitializePage = false;
 														.removeClass(
 																'rotate-left rotate-right')
 														.fadeIn(300);
+						
 											} else {
 												$(this)
 														.next()
@@ -49,6 +75,11 @@ $.mobile.autoInitializePage = false;
 								.on(
 										"swipeleft",
 										function() {
+											timesVoted++;
+											if(timesVoted==5){
+												alert("All Done Voting!");
+												document.hiddenForm.submit();
+											}
 											$(this).addClass('rotate-right')
 													.delay(700).fadeOut(1);
 											$('.buddy').find('.status')
@@ -62,7 +93,7 @@ $.mobile.autoInitializePage = false;
 														.removeClass(
 																'rotate-left rotate-right')
 														.fadeIn(300);
-												alert('OUPS');
+	
 											} else {
 												$(this)
 														.next()
@@ -114,5 +145,9 @@ $.mobile.autoInitializePage = false;
 		%>
 	</div>
 
+<form name="hiddenForm" action="VotingServlet" method="GET" style="display:none;" >
+<input type="text" name="hiddenField" id="hiddenField" value="" />
+<input type="submit" id="button" value="Submit form">
+</form>
 </body>
 </html>
