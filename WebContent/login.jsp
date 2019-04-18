@@ -56,7 +56,7 @@ function hover(element) {
 	  element.setAttribute('src', 'plannrly.jpg');
 	}
 	function hover2(element) {
-		  element.setAttribute('src', 'userPinkk.png');
+		  element.setAttribute('src', 'userPink.png');
 		}
 
 		function unhover2(element) {
