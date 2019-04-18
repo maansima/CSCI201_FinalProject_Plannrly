@@ -166,7 +166,6 @@ public class DatabaseHelper {
 			joinGroup(groupName, groupOwner);
 			
 			return true;
-			
 		}
 		return false;
 	}
