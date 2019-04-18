@@ -36,6 +36,7 @@ public class ServletResults extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String Activity = (String)request.getParameter("Value");
+		String GroupName = (String)request.getParameter("GroupName");
 		Activity = Activity.replace("*", " ");
 		Business business = new Business();
 		List<Business> businesses = new ArrayList<Business>(); 
@@ -71,6 +72,7 @@ public class ServletResults extends HttpServlet {
 		request.setAttribute("Name", Activity);
 		request.setAttribute("Location", Location2);
 		request.setAttribute("Location", Location2);
+		request.setAttribute("GroupName", GroupName);
 		RequestDispatcher rd = request.getRequestDispatcher("Results.jsp");
 		rd.forward(request, response);
 		
