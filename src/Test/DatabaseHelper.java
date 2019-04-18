@@ -21,7 +21,7 @@ public class DatabaseHelper {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234");
 
 
 			if(conn == null) {
@@ -126,6 +126,33 @@ public class DatabaseHelper {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	public ArrayList<Integer> GetGroupMembers (String GroupName) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT groupID FROM GroupInfo WHERE groupName=?");
+		ps.setString(1,GroupName);
+		ArrayList<Integer> members = new ArrayList<Integer>();
+		Integer ID = 0;
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			ID= rs.getInt("groupID");
+		}
+		ps =  conn.prepareStatement("SELECT userID FROM GroupMember WHERE groupID=?");
+		ps.setInt(1,ID);
+		ResultSet ws = ps.executeQuery();
+		while(ws.next()) {
+			members.add(ws.getInt("userID"));
+		}
+		if(members.size()>0) {
+			return members;
+		}
+		}catch(SQLException e) {
+			System.out.println("error in getting group members " + e.getMessage());
+			e.printStackTrace();
+		}		
+		return null;
 	}
 	
 	public int GetMemberCount (String GroupName) {

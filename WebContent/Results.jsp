@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="Test.DatabaseHelper, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
@@ -40,8 +40,11 @@ function hover(element) {
 	  element.setAttribute('src', 'plannrly.jpg');
 	}
 </script>
-<% 	
-	Integer voting = (Integer)request.getAttribute("voting");
+<% 	DatabaseHelper db = new DatabaseHelper();
+	String GroupName = (String)request.getAttribute("Groupname");
+	System.out.println("GROUP NAME:"+GroupName);
+	ArrayList<Integer> MembersID = db.GetGroupMembers(GroupName);
+	String voting = (String)request.getAttribute("Groupname");
 	String Image =(String) request.getAttribute("ImageURL");
  String Phone = (String)request.getAttribute("PhoneNum");
  String URL = (String)request.getAttribute("YelpURL");
@@ -120,6 +123,10 @@ a{
         line-height: 30px;
         padding-left: 10px;
       }
+      
+     form #dateHolder{
+		height: 30px;
+	}
 }
 </style>
 <body>
@@ -137,7 +144,7 @@ a{
 <!-- Header -->
 <header class="w3-container w3-center w3-padding-32" style="visibility:none;" id = "header"> 
   <% if(voting!=null){%>
-  <h1><<b>The results of <span style="visibility:none;" class="w3-tag">Group's Name</span> vote is...</b></h1>
+  <h1><<b>The results of <span style="visibility:none;" class="w3-tag"><%=GroupName%></span>'s vote is...</b></h1>
       <%} %>
 </header>
 <!-- Grid -->
@@ -179,16 +186,14 @@ function initMap() {
           <p><button class="w3-button w3-padding-large w3-white w3-border" onclick="window.location.href='<%=URL%>'"><b>READ MORE &raquo;</b></button></p>
         </div>
         <div class="w3-col m4 w3-hide-small">
-        <%if(voting == null){ %>
         <form method="GET" action="AddActivity" id ="add">
-        	<input type="date" style="width:100px;"id="start" name="activitystart"
+        	<input id="dateHolder" type="date" style="width:200px;"id="start" name="activitystart"
       			 placeholder="2019-04-16"
        			min="2019-04-16" max="2019-04-31"><br>
        			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="time" value="Night">Night </span>
        			<input name="Name" type=radio style="visibility:hidden" value=<%=Name2%> checked>
           <p><span class="w3-padding-large w3-right"><button type="submit" form="add" style="border:none; background-color:white;">ADD TO CALENDAR &nbsp;</button></span></p>
           </form>
-          <%} %>
           </div>
         </div>
       </div>
@@ -203,12 +208,12 @@ function initMap() {
   <!-- About Card -->
   <div class="w3-card w3-margin w3-margin-top">
     <div class="w3-container w3-white">
-      <h4><b>Group Name</b></h4>
+      <h4><b><%=GroupName %></b></h4>
       <p>Group Members</p>
-      <p>Member 1</p>
-      <p>Member 2</p>
-      <p>member 3</p>
-      <p>Member 4</p>
+      <%for(int i = 0; i<MembersID.size();i++){
+    	  String MemberName = db.GetUser(MembersID.get(i));%>
+      <p><%=MemberName %></p>
+	<%} %>
     </div>
   </div>
 <!-- END Introduction Menu -->

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginServlet
@@ -20,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String username = request.getParameter("uname");
 		String password = request.getParameter("pword");
 		int result = 0;
@@ -40,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("loginID", dh.GetID(username));
 				System.out.println(dh.GetID(username));
 				request.setAttribute("logincheck", "Success");
+				session.setAttribute("loginID",dh.GetID(username));
 				nextPage = "/ServletProfile";
 			}
 			else if( result == 2)
