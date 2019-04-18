@@ -39,7 +39,7 @@ window.onload= function(){
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
-<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<div id="Profile"><a href="ServletProfile">Profile</a> </div>
 <a id="GroupCreation" href = "${pageContext.request.contextPath}/CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>

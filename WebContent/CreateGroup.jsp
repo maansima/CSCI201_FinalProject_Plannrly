@@ -29,7 +29,7 @@
 			id="Login" href="login.jsp">Login</a> <a id="SignUp"
 			href="signup.jsp">Sign up</a>
 		<div id="Profile">
-			<a href="Profile.jsp">Profile</a>
+			<a href="ServletProfile">Profile</a>
 		</div>
 		<a id="SignOut" href="${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>
