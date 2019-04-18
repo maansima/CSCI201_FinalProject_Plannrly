@@ -46,8 +46,7 @@ function displayLinks(){
 	function myFunction() {
 		document.getElementById("wait").style.display = "none";
 		document.getElementById("waiting").style.display = "none";
-		document.getElementById("hardCoding").innerHTML += ("All Group Members are ready to go! </br>" +
-		"Click on the button to start voting! </br> <button type=\"button\" onClick=\"letsVote() + \">Let's Vote!</button>");
+		document.getElementById("hardCoding").style.display = "initial";
 	}
 	var socket
 	function connectToServer(){
@@ -104,7 +103,11 @@ function displayLinks(){
 <div id="dots">
 <p id="waiting"> Waiting for team members to connect </p>
 <span id="wait">.</span>
-<div id="hardCoding"> </div>
+</div>
+<div id="hardCoding" style="display:none; margin-right:1%;"> 
+All Group Members are ready to go! </br>" +
+		"Click on the button to start voting! </br> 
+		<button type="button" onClick="letsVote()" style="margin:0; right:50%;">Let's Vote!</button>
 </div>
 <script>
     window.dotsGoingUp = true;

@@ -53,6 +53,13 @@ a{
 #wait {
 	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
 	font-size: 30px;
+	margin:0;
+}
+
+#hardCoding{
+	position: absolute;
+	right:27%;
+	top:30%;
 }
 
 #dots{
@@ -63,6 +70,7 @@ a{
 }
 
 #waiting {
+	margin:0;
 	text-align: center;
 	right:10%;
 }
