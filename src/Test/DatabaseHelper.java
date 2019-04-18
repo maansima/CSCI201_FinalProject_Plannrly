@@ -18,7 +18,7 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234&serverTimezone=UTC");
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -43,6 +43,21 @@ public class DatabaseHelper {
 		}
 		return -1;
 		
+	}
+	
+	public int GetGroupID(String groupName) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT groupID FROM GroupInfo WHERE groupName=?");
+		ps.setString(1, groupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("groupID");
+		}
+		} catch (SQLException ex) {
+	 		System.out.println("error");
+		}
+		return -1;
+
 	}
 	
 	public ArrayList<String> GetGroups(Integer ID){
@@ -137,7 +152,13 @@ public class DatabaseHelper {
 			st.setInt(4, price);
 			st.setString(5, activityType);
 			st.executeUpdate();
+			
+			for(int i = 0; i < groupMembers.size(); i++) {
+				joinGroup(groupName, groupMembers.get(i));
+			}
+			
 			return true;
+			
 		}
 		return false;
 	}
@@ -191,8 +212,10 @@ public class DatabaseHelper {
 			String insertQuery = "INSERT INTO GroupMember (userID, groupID)"
 					+ "values(?, ?)";
 			st = conn.prepareStatement(insertQuery);
-			st.setString(1, username);
-			st.setString(2, groupName);
+			int userId = GetID(username);
+			int groupId = GetGroupID(groupName);
+			st.setInt(1, userId);
+			st.setInt(2, groupId);
 			st.executeUpdate();
 			return true;
 		}
