@@ -38,7 +38,7 @@ function displayLinks(){
 }
 	var socket
 	function connectToServer(){
-		socket = new WebSocket("ws://gateway:8080/Plannrly/chat2");
+		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
 		socket.onopen = function(event){
 			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
 		}
@@ -75,6 +75,8 @@ ChatClient cc= new ChatClient("192.168.43.1", 6789);
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
+<div id="content"> 
+<div id="left"> 
 <form name="form" onsubmit="return sendMessage()">
 <table class="fixed_header">
 	<thead>
@@ -87,5 +89,29 @@ ChatClient cc= new ChatClient("192.168.43.1", 6789);
 	<input type="text" id="message" name= "message" placeholder="Type a message"/><br>
 	<input type="submit" id="button" name="submit" value="Send"/><br>			
 </form>
+</div>
+<div id = "right" >
+<div id="waiting" >
+<p> Waiting for team members to connect </p>
+<span id="wait">.</span>
+
+<script>
+    window.dotsGoingUp = true;
+    var dots = window.setInterval( function() {
+        var wait = document.getElementById("wait");
+        if ( window.dotsGoingUp ) 
+            wait.innerHTML += ".";
+        else {
+            wait.innerHTML = wait.innerHTML.substring(1, wait.innerHTML.length);
+            if ( wait.innerHTML === "")
+                window.dotsGoingUp = true;
+        }
+        if ( wait.innerHTML.length > 9 )
+            window.dotsGoingUp = false;
+        }, 100);
+    </script>
+</div>
+</div>
+</div>
 </body>
 </html>

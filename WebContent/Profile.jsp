@@ -33,6 +33,14 @@ function hover(element) {
 	function unhover(element) {
 	  element.setAttribute('src', 'plannrly.jpg');
 	}
+	
+	function hover2(element) {
+		  element.setAttribute('src', 'userPink.png');
+		}
+
+		function unhover2(element) {
+		  element.setAttribute('src', 'user.png');
+		}
 </script>
 <% DatabaseHelper db = new DatabaseHelper();
 	ArrayList<String> Groups = db.GetGroups((Integer)session.getAttribute("loginID"));
@@ -120,7 +128,7 @@ function hover(element) {
     <div class="logo"></div>
     <div class="avatar">
       <div class="avatar__img">
-        <img src="user.png" style= "width:130px;" alt="avatar">
+        <img src="user.png" style= "width:130px;" alt="avatar" onmouseover="hover2(this);" onmouseout="unhover2(this);">
       </div>
       <div class="avatar__name"><%= username %></div>
     </div>

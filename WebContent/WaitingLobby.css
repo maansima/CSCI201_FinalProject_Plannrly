@@ -50,6 +50,26 @@ a{
   width:20vw;
 }
 
+#wait {
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+	font-size: 30px;
+}
+
+#left {
+	height:70vh;
+  	width:20vw;
+}
+
+#right {
+	float: right;
+/* 	margin-right: -900px; */
+	width: 900px;
+	height: 900px;
+}
+
+#waiting {
+	text-align: center;
+}
 table {
 	border-collapse: collapse;
 	border: 1px solid black;
