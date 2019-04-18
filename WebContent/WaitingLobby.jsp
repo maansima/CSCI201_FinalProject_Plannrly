@@ -64,7 +64,7 @@ function displayLinks(){
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
-<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<div id="Profile"><a href="ServletProfile">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 <form name="form" onsubmit="return sendMessage()">
