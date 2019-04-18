@@ -64,10 +64,12 @@ function hover(element) {
 <div class = "groups" id = "groups" style="visibility: hidden; position:relative;height: 10%;">
   		<h3>Group's you are a member of:</h3>
   		<div class="member">
+  		<div class ="listI">
   		<%if (Groups!=null){ %>
   		<%for(int i = 0; i<Groups.size();i++){ %>
-  			<a href="/Plannrly/WaitingLobby?groupName=<%=Groups.get(i)%>"><div><%=Groups.get(i) %></div></a> 
+  			<a href="/Plannrly/WaitingLobby?groupName=<%=Groups.get(i)%>"><%=Groups.get(i) %></a> <br>
   		<%}} %>
+  		</div>
  		 </div>
  	 </div>
 <!--  <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
