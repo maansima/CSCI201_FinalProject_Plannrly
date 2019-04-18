@@ -30,6 +30,7 @@ public class VotingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String voteResults = request.getParameter("hiddenField");
+		String groupName = request.getParameter("groupName");
 		String parameters[] = voteResults.split(",");
 		Set<String> resultSet = new HashSet<String>();
 		for(String s : parameters) {
@@ -40,7 +41,6 @@ public class VotingServlet extends HttpServlet {
 			dataString+=s+",";
 		}
 		dataString = dataString.substring(0, dataString.length()-1);
-		System.out.println(dataString);
 		//add to database here
 		
 		

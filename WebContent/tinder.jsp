@@ -147,6 +147,7 @@ window.onload= function(){
 
 <form name="hiddenForm" action="VotingServlet" method="GET" style="display:none;" >
 <input type="text" name="hiddenField" id="hiddenField" value="" />
+<input type="text" name="groupName" id="hiddenField" value="<%=request.getAttribute("groupName")%>" />
 <input type="submit" id="button" value="Submit form">
 </form>
 </body>

@@ -57,9 +57,11 @@ public class AddActivity extends HttpServlet {
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/ServletProfile");
 		dispatch.forward(request,response);
 
+
 		
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
