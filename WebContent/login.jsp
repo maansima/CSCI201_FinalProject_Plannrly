@@ -67,7 +67,7 @@ window.onload= function(){
 	</div>
 	<div class="child">
 	Password<br>
-	<input type="text" name="pword">
+	<input type="password" name="pword">
 	</div>
 	<div class="child">
 	<input type="submit" name="submit" value="Login">

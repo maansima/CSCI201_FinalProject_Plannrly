@@ -158,7 +158,6 @@ public class DatabaseHelper {
 			}
 			
 			return true;
-			
 		}
 		return false;
 	}

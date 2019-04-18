@@ -61,10 +61,10 @@
 				<input type="text" name="username" placeholder="Username"><br>
 			</div>
 			<div class="child">
-				<input type="text" name="pass" placeholder="Password"><br>
+				<input type="password" name="pass" placeholder="Password"><br>
 			</div>
 			<div class="child">
-				<input type="text" name="confirmpass" placeholder="Confirm Password"><br>
+				<input type="password" name="confirmpass" placeholder="Confirm Password"><br>
 			</div>
 			<div class="child">
 				<input type="submit" placeholder="Submit">
