@@ -75,7 +75,7 @@ public class groupCreation extends HttpServlet {
 			System.out.println("error in creating group : " + e.getMessage());
 		}
 		request.setAttribute("numGroup", members.length);
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/WaitingLobby.jsp");
+		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/ServletProfile");
 		dispatch.forward(request,response);
 		
 		

@@ -20,7 +20,10 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+
+
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -299,16 +302,15 @@ public class DatabaseHelper {
 		st.executeUpdate();
 		return true;
 	}
-	public void addActivity(String ActivityName, Integer userID, Integer Time, Integer Date, Integer groupID) {
-		String query = "INSERT INTO Activities (userID, ActivityName,Time,Date,GroupID)"
-				+ "values(?, ?,?,?,?)";
+	public void addActivity(String ActivityName, Integer userID, Integer Time, Integer Date) {
+		String query = "INSERT INTO Activities (userID, ActivityName,Time,Date)"
+				+ "values(?, ?,?,?)";
 		try {
 		st = conn.prepareStatement(query);
 		st.setInt(1, userID);
-		st.setString(1,ActivityName);
+		st.setString(2,ActivityName);
 		st.setInt(3,Time);
 		st.setInt(4,Date);
-		st.setInt(5,groupID);
 		st.executeUpdate();
 		}catch (SQLException ex) {
 			System.out.println("error");

@@ -16,7 +16,7 @@ window.onload= function(){
 	var Voted = <%=session.getAttribute("voting")%>;
 	if(Voted ==0){
 		document.getElementById("novoting").style.display = "none";
-		 document.getElementById("novoting1").style.display = "none";<
+		 document.getElementById("novoting1").style.display = "none";
 	}
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
@@ -50,8 +50,9 @@ function hover(element) {
  String Price = (String)request.getAttribute("Price");
  Double Rating = (Double)request.getAttribute("Rating");
  String Name = (String)request.getAttribute("Name");
+ String Name2 = ((String)request.getAttribute("Name")).replace(" ", "*");
  String Location = (String)request.getAttribute("Location");
- 
+ request.setAttribute("Name", Name); 
 %>
 </head>
 <style>
@@ -127,8 +128,9 @@ a{
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
-<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
+<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
+
 	</div>
 <div class="w3-content" style="max-width:1400px">
 
@@ -178,12 +180,13 @@ function initMap() {
         </div>
         <div class="w3-col m4 w3-hide-small">
         <%if(voting == null){ %>
-        <form type=GET action="/ServletAddActivity">
-        	<input type="date" style="width:100px;"id="start" name="trip-start"
+        <form method="GET" action="AddActivity" id ="add">
+        	<input type="date" style="width:100px;"id="start" name="activitystart"
       			 placeholder="2019-04-16"
        			min="2019-04-16" max="2019-04-31"><br>
-       			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="morning" value="Night">Night </span>
-          <p><span class="w3-padding-large w3-right"><button style="border:none; background-color:white;" onclick="submit">ADD TO CALENDAR &nbsp;</button></span></p>
+       			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="time" value="Night">Night </span>
+       			<input name="Name" type=radio style="visibility:hidden" value=<%=Name2%> checked>
+          <p><span class="w3-padding-large w3-right"><button type="submit" form="add" style="border:none; background-color:white;">ADD TO CALENDAR &nbsp;</button></span></p>
           </form>
           <%} %>
           </div>
