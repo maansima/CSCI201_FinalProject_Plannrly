@@ -21,7 +21,7 @@ public class DatabaseHelper {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
 
 
 			if(conn == null) {
@@ -200,6 +200,17 @@ public class DatabaseHelper {
 			return null;
 	}
 	
+	public String getVotes () throws SQLException{
+		String result = "";
+		PreparedStatement ps = conn.prepareStatement("SELECT votedList FROM whovoted WHERE dummy=?");
+		ps.setString(1, "dummy");
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			result += rs.getString("votedList") + ",";
+		}
+		return result;
+	}
+	
 	public boolean createAccount(String username, String password) throws SQLException {
 		boolean check = false;
 		String query = "SELECT COUNT(*) FROM User WHERE username=?";
@@ -227,7 +238,7 @@ public class DatabaseHelper {
 	
 	public boolean createVote(String voteName) throws SQLException {
 		boolean check = false;
-		String query = "SELECT COUNT(*) FROM Votes WHERE activityName=?";
+		String query = "SELECT COUNT(*) FROM Votes WHERE voteName=?";
 		st = conn.prepareStatement(query);
 		st.setString(1, voteName);
 		rs = st.executeQuery();
@@ -247,6 +258,55 @@ public class DatabaseHelper {
 		else { 
 			return false;
 		}
+	}
+	
+	public boolean createNotification(String notName) throws SQLException {
+		boolean check = false;
+		String query = "SELECT COUNT(*) FROM notifications WHERE notification=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, notName);
+		rs = st.executeQuery();
+		while(rs.next()) {
+			check = (rs.getInt(1)== 0); //verifies that no notification with this name currently exists
+		}
+		if(check) {
+			String insertQuery = "INSERT INTO notifications(notification)"
+					+ " values(?)";
+			st = conn.prepareStatement(insertQuery);
+			st.setString(1, notName);
+			st.executeUpdate();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+
+	public ArrayList<String> getNotification()  {
+		
+		PreparedStatement ps; 
+		
+		try {
+			ps = conn.prepareStatement("SELECT notification FROM notification");
+			ArrayList<String> notifications = new ArrayList<String>(); 
+			ResultSet ws = ps.executeQuery();
+			while(ws.next()) {
+				notifications.add(ws.getString("notification"));
+			}
+			System.out.println(notifications.get(0));
+			if(notifications.size() > 0) {
+				return notifications;
+			}
+			
+		} catch(SQLException e){
+			System.out.println("error in getting group members " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return null; 
+		
+		
 	}
 	
 	public boolean updateVote(String voteName) throws SQLException {
