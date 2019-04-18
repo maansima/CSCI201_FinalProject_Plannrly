@@ -118,13 +118,13 @@ window.onload= function(){
     </div>
     <nav class="menu">
           <div class="menu__item menu__item--active">
-        <button id="button" style="border:none;background-color:white;color:gray;background-color:none;font-family: Montserrat;font-size:16px;" class="menu__text" onclick="Calendar()">Calendar</button>
+        <button id="button" style="border:none;background-color:white;background-color:none;font-size:16px;" class="menu__text" onclick="Calendar()">Calendar</button>
       </div>
       <div class="menu__item menu__item--active">
-        <button id="button" style="border:none;background-color:white;color:gray;background-color:none;font-family: Montserrat;font-size:16px;" class="menu__text" onclick="Groups()">Groups</button>
+        <button id="button" style="border:none;background-color:white;background-color:none;font-size:16px;" class="menu__text" onclick="Groups()">Groups</button>
       </div>
       <div class="menu__item menu__item--active">
-        <button id="button" style="border:none;background-color:white;color:gray;background-color:none;font-family: Montserrat;font-size:16px;"class="menu__text" onclick="Notifications()">Notifications</button>
+        <button id="button" style="border:none;background-color:white;background-color:none;font-size:16px;"class="menu__text" onclick="Notifications()">Notifications</button>
       </div>
     </nav>
   </sidebar>
