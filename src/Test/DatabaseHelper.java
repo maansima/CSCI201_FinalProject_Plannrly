@@ -282,6 +282,33 @@ public class DatabaseHelper {
 		}
 	}
 	
+
+	public ArrayList<String> getNotification()  {
+		
+		PreparedStatement ps; 
+		
+		try {
+			ps = conn.prepareStatement("SELECT notification FROM notification");
+			ArrayList<String> notifications = new ArrayList<String>(); 
+			ResultSet ws = ps.executeQuery();
+			while(ws.next()) {
+				notifications.add(ws.getString("notification"));
+			}
+			System.out.println(notifications.get(0));
+			if(notifications.size() > 0) {
+				return notifications;
+			}
+			
+		} catch(SQLException e){
+			System.out.println("error in getting group members " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return null; 
+		
+		
+	}
+	
 	public boolean updateVote(String voteName) throws SQLException {
 		boolean check = false;
 		int count = 0;
