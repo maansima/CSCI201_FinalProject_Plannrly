@@ -66,9 +66,7 @@ function displayLinks(){
 </script>
 </head>
 <body onload = "start()">
-<%
-ChatClient cc= new ChatClient("192.168.43.1", 6789);
-%>
+
 <div id = "header"> 
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
