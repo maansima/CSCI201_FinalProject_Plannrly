@@ -54,7 +54,7 @@ public class AddActivity extends HttpServlet {
 		Integer LoginID = (Integer)session.getAttribute("loginID");
 		System.out.println(LoginID);
 		db.addActivity(ActivityName, LoginID, ActivityTime, ActivityDay);
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("ServletProfile");
+		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/ServletProfile");
 		dispatch.forward(request,response);
 
 		

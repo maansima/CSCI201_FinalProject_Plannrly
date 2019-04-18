@@ -70,6 +70,7 @@ public class ServletResults extends HttpServlet {
 		request.setAttribute("Rating", Rating);
 		request.setAttribute("Name", Activity);
 		request.setAttribute("Location", Location2);
+		request.setAttribute("Location", Location2);
 		RequestDispatcher rd = request.getRequestDispatcher("Results.jsp");
 		rd.forward(request, response);
 		
