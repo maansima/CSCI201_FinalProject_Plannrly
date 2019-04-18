@@ -21,8 +21,8 @@ public class DatabaseHelper {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
 
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234");
 
 			if(conn == null) {
 				System.out.println("it is null oh uh");
@@ -292,25 +292,23 @@ public class DatabaseHelper {
 	public ArrayList<String> getNotification()  {
 		
 		PreparedStatement ps; 
-		
+		ArrayList<String> notifications = new ArrayList<String>(); 
 		try {
-			ps = conn.prepareStatement("SELECT notification FROM notification");
-			ArrayList<String> notifications = new ArrayList<String>(); 
+			ps = conn.prepareStatement("SELECT notification FROM notifications");
 			ResultSet ws = ps.executeQuery();
 			while(ws.next()) {
 				notifications.add(ws.getString("notification"));
 			}
-			System.out.println(notifications.get(0));
 			if(notifications.size() > 0) {
 				return notifications;
 			}
 			
 		} catch(SQLException e){
-			System.out.println("error in getting group members " + e.getMessage());
-			e.printStackTrace();
+			System.out.println("error in getting notifications" + e.getMessage());
+	
 		}
 		
-		return null; 
+		return notifications; 
 		
 		
 	}
