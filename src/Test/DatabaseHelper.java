@@ -20,7 +20,11 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+<<<<<<< HEAD
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=Yj26Xcco&serverTimezone=UTC");
+=======
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
+>>>>>>> 7999c09ed1caaebd80df2aa6c9c8ab4712d7e8c5
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -94,6 +98,67 @@ public class DatabaseHelper {
 		}
 		return null;
 	}
+	
+	public String GetGroupLocation (String GroupName) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT location FROM GroupInfo WHERE groupName=?");
+		ps.setString(1,GroupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getString("location");
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int GetGroupPrice (String GroupName) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT price FROM GroupInfo WHERE groupName=?");
+		ps.setString(1,GroupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("price");
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int GetMemberCount (String GroupName) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT memberCount FROM GroupInfo WHERE groupName=?");
+		ps.setString(1,GroupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("memberCount");
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public String GetGroupActivity (String GroupName) {
+		PreparedStatement ps;
+		try {
+		ps = conn.prepareStatement("SELECT activityType FROM GroupInfo WHERE groupName=?");
+		ps.setString(1,GroupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getString("activityType");
+		}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	
 	public String GetUser(Integer ID) {
 		try {

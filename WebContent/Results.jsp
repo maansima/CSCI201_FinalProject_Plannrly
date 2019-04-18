@@ -146,7 +146,7 @@ a{
   <div class="w3-card-4 w3-margin w3-white">
     <div class="container" style="display:in-line;">
    <span><img src="<%=Image%>" alt="ActivityPic" style="width:400px; max-height:400px;"> 
-    <div id="map" style="width:400px;max-height:400px;position:relative; margin-right: 40px;"></div>
+    <div id="map" style="width:400px;max-height:400px;position:absolute; right: 37%; top:30%;"></div>
     <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service

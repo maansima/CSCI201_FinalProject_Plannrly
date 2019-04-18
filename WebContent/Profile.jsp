@@ -66,7 +66,7 @@ function hover(element) {
   		<div class="member">
   		<%if (Groups!=null){ %>
   		<%for(int i = 0; i<Groups.size();i++){ %>
-  			<div><%=Groups.get(i) %></div> 
+  			<a href="/Plannrly/WaitingLobby?groupName=<%=Groups.get(i)%>"><div><%=Groups.get(i) %></div></a> 
   		<%}} %>
  		 </div>
  	 </div>
