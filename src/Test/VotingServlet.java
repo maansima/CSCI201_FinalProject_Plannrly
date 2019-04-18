@@ -2,7 +2,10 @@ package Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -52,10 +55,45 @@ public class VotingServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		int memberCount = new DatabaseHelper().GetMemberCount(groupName);
+		Map<String, Integer> voteMap = new HashMap<String, Integer>();
 		System.out.println(memberCount+":"+voteCount);
 		//check if amount of 
 		if(memberCount==voteCount) {
-			
+			String votes="";
+			try {
+				votes = db.getVotes();
+				votes = votes.substring(0, votes.length()-1);
+				System.out.println(votes);
+				String array[] = votes.split(",");
+				for(String s: array) {
+					if(voteMap.containsKey(s)) {
+					    voteMap.put(s, voteMap.get(s)+1);
+					} else {
+					    voteMap.put(s, 1);
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+			String maxVote="";
+			int maxCount=0;
+			 Iterator it = voteMap.entrySet().iterator();
+			    while (it.hasNext()) {
+			        Map.Entry pair = (Map.Entry)it.next();
+			        System.out.println(pair.getKey() + " = " + pair.getValue());
+			       if((int)pair.getValue()>maxCount) {
+			    	   maxCount=(int)pair.getValue();
+			    	   maxVote=(String)pair.getKey();
+			       }
+			    }
+			    String link = "ServerResults?Value="+maxVote+"&GroupName="+groupName;
+			    try {
+					db.createNotification(link);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 		}
 		
 	}
