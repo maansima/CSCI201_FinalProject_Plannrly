@@ -16,6 +16,8 @@ ONLINE MEMBERS IE. NETWORKING PORTION -->
     DatabaseHelper db = new DatabaseHelper(); 
     String name = db.GetUser(ID);
     System.out.println(name);
+    
+    String location =(String) request.getAttribute("location");
 
 %>
 function start() {
@@ -110,6 +112,17 @@ function displayLinks(){
     </script>
 </div>
 </div>
+</div>
+
+<div class="groupDetails">
+<div id="groupName"></div>
+<div id="groupLocation">
+<% out.println("<p>" + location + "%</p>"); %>
+
+</div>
+<div id="groupMembers"></div>
+<div id="groupPrice"></div>
+<div id="numMembers"></div>
 </div>
 </body>
 </html>
