@@ -107,7 +107,7 @@ function hover(element) {
       				<%if(db.getActivityGroup(db.getActivities(usernameID,num).get(k)) == -1){
       					String Time = "Morning";
       					if(db.getActivityTime(db.getActivities(usernameID,num).get(k)) == 2){Time = "Afternoon";}
-      					else if(db.getActivityTime(db.getActivities(usernameID,num).get(k)) == 1){Time = "Night";}				
+      					else if(db.getActivityTime(db.getActivities(usernameID,num).get(k)) == 3){Time = "Night";}				
       				String ActivityName = db.getActivityName(db.getActivities(usernameID,num).get(k));%>
       					<br><a style="color:grey;"><%=ActivityName %></a> (Time: <%=Time%>)
       				<%} %>
