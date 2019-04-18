@@ -97,6 +97,7 @@ public class PostWaitingServ extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("resultList", results);
+		session.setAttribute("resultList1", results);
 		RequestDispatcher pd = request.getRequestDispatcher("tinder.jsp");
 		pd.forward(request, response);
 	}

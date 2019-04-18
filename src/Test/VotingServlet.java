@@ -1,9 +1,14 @@
 package Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,9 +46,62 @@ public class VotingServlet extends HttpServlet {
 			dataString+=s+",";
 		}
 		dataString = dataString.substring(0, dataString.length()-1);
-		//add to database here
-		
-		
+		DatabaseHelper db = new DatabaseHelper();
+		db.addVoted(dataString);
+		int voteCount=0;
+		try {
+			voteCount =db.getVotedCount();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int memberCount = new DatabaseHelper().GetMemberCount(groupName);
+		Map<String, Integer> voteMap = new HashMap<String, Integer>();
+		System.out.println(memberCount+":"+voteCount);
+		//check if amount of 
+		if(memberCount==voteCount) {
+			String votes="";
+			try {
+				votes = db.getVotes();
+				votes = votes.substring(0, votes.length()-1);
+				System.out.println(votes);
+				String array[] = votes.split(",");
+				for(String s: array) {
+					if(voteMap.containsKey(s)) {
+					    voteMap.put(s, voteMap.get(s)+1);
+					} else {
+					    voteMap.put(s, 1);
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+			String maxVote="";
+			int maxCount=0;
+			 Iterator it = voteMap.entrySet().iterator();
+			    while (it.hasNext()) {
+			        Map.Entry pair = (Map.Entry)it.next();
+			        System.out.println(pair.getKey() + " = " + pair.getValue());
+			       if((int)pair.getValue()>maxCount) {
+			    	   maxCount=(int)pair.getValue();
+			    	   maxVote=(String)pair.getKey();
+			       }
+			    }
+			    String finalVote = maxVote.trim();
+				finalVote = finalVote.replaceAll("\\s", "%");
+				groupName = groupName.trim();
+				groupName = groupName.replaceAll("\\s", "%");
+			    String link = "/Plannrly/ServerResults?Value="+finalVote+"&GroupName="+groupName;
+			    try {
+					db.createNotification(link);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
+		}
+		RequestDispatcher pd = request.getRequestDispatcher("/ServletProfile");
+		pd.forward(request, response);
 	}
 
 	/**

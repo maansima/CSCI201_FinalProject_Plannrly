@@ -205,10 +205,16 @@ public class DatabaseHelper {
 		PreparedStatement ps = conn.prepareStatement("SELECT votedList FROM whovoted WHERE dummy=?");
 		ps.setString(1, "dummy");
 		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
+		while(rs.next()) {
 			result += rs.getString("votedList") + ",";
 		}
 		return result;
+	}
+	
+	public void deleteTable() throws SQLException{
+		PreparedStatement ps = conn.prepareStatement("DELETE * FROM whovoted WHERE dummy=?");
+		ps.setString(1, "dummy");
+		ResultSet rs = ps.executeQuery();
 	}
 	
 	public boolean createAccount(String username, String password) throws SQLException {
@@ -540,6 +546,31 @@ public class DatabaseHelper {
 	 		System.out.println("error Act");
 		}
 		return null;
+	}
+	
+	public void addVoted(String activityList) {
+		String query = "INSERT INTO whovoted(votedList, dummy)"
+				+ "values(?, ?)";
+		try {
+		st = conn.prepareStatement(query);
+		st.setString(1, activityList);
+		st.setString(2, "dummy");
+		st.executeUpdate();
+		}catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}	
+	}
+	
+	public int getVotedCount() throws SQLException {
+		int count= 0;
+		String query = "SELECT COUNT(*) FROM whovoted WHERE dummy=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, "dummy");
+		rs = st.executeQuery();
+		while(rs.next()) {
+			count=rs.getInt(1);
+		}
+		return count;
 	}
 	
 
