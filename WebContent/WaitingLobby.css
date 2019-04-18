@@ -75,5 +75,11 @@ table {
 	border-radius: 12px;
 }
 
+.groupDetails { 
+	position: absolute;
+	top: 30%; 
+	right: 50%; 
+}
+
 a:hover{color:#EED2EA};
 
