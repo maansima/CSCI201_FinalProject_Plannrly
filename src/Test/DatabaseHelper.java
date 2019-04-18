@@ -227,7 +227,7 @@ public class DatabaseHelper {
 	
 	public boolean createVote(String voteName) throws SQLException {
 		boolean check = false;
-		String query = "SELECT COUNT(*) FROM Votes WHERE activityName=?";
+		String query = "SELECT COUNT(*) FROM Votes WHERE voteName=?";
 		st = conn.prepareStatement(query);
 		st.setString(1, voteName);
 		rs = st.executeQuery();
@@ -245,6 +245,28 @@ public class DatabaseHelper {
 			
 		}
 		else { 
+			return false;
+		}
+	}
+	
+	public boolean createNotification(String notName) throws SQLException {
+		boolean check = false;
+		String query = "SELECT COUNT(*) FROM notifications WHERE notification=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, notName);
+		rs = st.executeQuery();
+		while(rs.next()) {
+			check = (rs.getInt(1)== 0); //verifies that no notification with this name currently exists
+		}
+		if(check) {
+			String insertQuery = "INSERT INTO notifications(notification)"
+					+ " values(?)";
+			st = conn.prepareStatement(insertQuery);
+			st.setString(1, notName);
+			st.executeUpdate();
+			return true;
+		}
+		else {
 			return false;
 		}
 	}
