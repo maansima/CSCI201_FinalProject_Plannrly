@@ -1,6 +1,8 @@
 package Test;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,7 @@ public class WaitingLobby extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in servlet");
 		String groupName = request.getParameter("groupName");
 		System.out.println(groupName);
 		DatabaseHelper db = new DatabaseHelper(); 
@@ -22,7 +25,13 @@ public class WaitingLobby extends HttpServlet {
 		int numMembers = db.GetMemberCount(groupName);
 		String groupActivity = db.GetGroupActivity(groupName);
 		System.out.println(location + " " + price + " " + numMembers + " " + groupActivity);
-	
+		request.setAttribute("location", location);
+		System.out.println("this is the location in servlet " + location);
+		request.setAttribute("price", price);
+		request.setAttribute("numMembers", numMembers);
+		request.setAttribute("groupActivity", groupActivity);
+		RequestDispatcher rd = request.getRequestDispatcher("WaitingLobby.jsp");
+		rd.forward(request, response);
 	}
 
 	
