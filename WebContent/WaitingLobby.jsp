@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="Test.ServerSocket, Test.DatabaseHelper"%>
+    pageEncoding="UTF-8" import="Test.ServerSocket, Test.DatabaseHelper, Test.ServerThread, Test.ChatClient, Test.ChatRoom"%>
 <!DOCTYPE html>
 <html>
 <!-- CAN BE ACCESSED BY ALL GROUP MEMBERS, REDIRECT TO VOTE FROM HERE AND SHOW 
@@ -50,9 +50,6 @@ function displayLinks(){
 		}
 	}
 	function sendMessage(){
-
-		console.log("name");
-		console.log("<%= name %>");
 		socket.send("<%= name %> : " + document.form.message.value);
 		document.getElementById("message").value = "";
 		return false;
@@ -60,6 +57,9 @@ function displayLinks(){
 </script>
 </head>
 <body onload = "start()">
+<%
+ChatClient cc= new ChatClient("192.168.43.1", 6789);
+%>
 <div id = "header"> 
 <a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
 <a id="Login" href="login.jsp">Login</a>
