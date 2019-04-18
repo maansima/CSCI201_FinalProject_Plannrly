@@ -34,6 +34,11 @@ body {
 	padding: 10px;
 	padding-right: 30px;
 }
+#GroupCreation{
+	float: right;
+	padding: 10px;
+	padding-right: 20px;
+}
 a{
 	text-decoration: none;
 	color: black; 
@@ -300,8 +305,7 @@ main {
   color: var(--red);
   font-weight: 500;
   }
-  
-.wrapper{
-		font-family: Futura,Trebuchet MS,Arial,sans-serif; 
-	
+
+.groups{
+	padding-left: 30px;
 }
