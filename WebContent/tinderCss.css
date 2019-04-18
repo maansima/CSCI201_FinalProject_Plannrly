@@ -1,4 +1,46 @@
+body {
+	height: 100%; 
+	width: 100%;
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+}
 
+#header #logo {
+	height: 100px; 
+	width: auto;
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+
+}
+
+#Profile {
+	float: right;
+	padding: 10px;
+	padding-right: 30px;
+}
+
+#SignOut {
+	float: right;
+	padding: 10px;
+}
+
+#Login{
+	float: right;
+	padding: 10px;
+}
+
+#SignUp{
+	float: right;
+	padding: 10px;
+	padding-right: 30px;
+}
+#GroupCreation{
+	float: right;
+	padding: 10px;
+	padding-right: 20px;
+}
+a{
+	text-decoration: none;
+	color: black; 
+}
 #container {
   width: 500px;
   margin: auto !important;
@@ -17,11 +59,11 @@
   display: none;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 1px black;
   color: #fff;
   padding: 20px;
   width: 360px;
-  height: 360px;
+  height: 400px;
   top: 50px;
   left: 50px;
   position: absolute;
@@ -44,7 +86,6 @@
   z-index: 10;
 }
 .avatar {
-  background: #222;
   width: 340px;
   height: 340px;
   display: block;
@@ -80,11 +121,15 @@
 }
 
 span {
-	color:white;
+	font-family: Futura;
+	font-weight: 100;
+	color: white;
 	background: black;
 	position:absolute;
 	margin-left:20%;
-	margin-top: 5%;
+	margin-top: 90%;
   	display: block;
-  	width:300px;
+  	width:200px;
+  	height:25px;
+  	text-align: center;
 }

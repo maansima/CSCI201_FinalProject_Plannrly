@@ -8,12 +8,13 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="tinderCss.css" />
-<link rel="stylesheet"
-	href="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
 <script>
+
+$.mobile.autoInitializePage = false;
+
 	$(document)
 			.ready(
 					function() {
@@ -75,6 +76,14 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 </script>
 </head>
 <body>
+<div id = "header"> 
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a id="Login" href="login.jsp">Login</a>
+<a id="SignUp" href = "signup.jsp">Sign up</a>
+<div id="Profile"><a href="ServletProfile">Profile</a> </div>
+<a id="SignOut" href = "ServletSignOut">Sign Out</a>
+<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
+</div>
 	<div id="container">
 		<%
 			ArrayList<FinalYelpObj> activitiesList = (ArrayList<FinalYelpObj>) request.getAttribute("resultList");

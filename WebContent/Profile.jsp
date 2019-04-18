@@ -112,7 +112,7 @@ window.onload= function(){
     <div class="logo"></div>
     <div class="avatar">
       <div class="avatar__img">
-        <img src="Ico.png" style= "width:130px;" alt="avatar">
+        <img src="user.png" style= "width:130px;" alt="avatar">
       </div>
       <div class="avatar__name"><%= username %></div>
     </div>
