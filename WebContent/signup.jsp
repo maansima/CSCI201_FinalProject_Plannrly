@@ -58,13 +58,16 @@
 		<form method="GET"
 			action="${pageContext.request.contextPath}/ServletSignUp">
 			<div class="child">
-				<input type="text" name="username" placeholder="Username"><br>
+				Username<br>
+				<input type="text" name="username"><br>
 			</div>
 			<div class="child">
-				<input type="password" name="pass" placeholder="Password"><br>
+				Password<br>
+				<input type="password" name="pass"><br>
 			</div>
 			<div class="child">
-				<input type="password" name="confirmpass" placeholder="Confirm Password"><br>
+				Confirm Password<br>
+				<input type="password" name="confirmpass"><br>
 			</div>
 			<div class="child">
 				<input type="submit" placeholder="Submit">
