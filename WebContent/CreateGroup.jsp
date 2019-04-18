@@ -53,7 +53,7 @@
 		<div id="form"> 
 		<p> Make your Group! </p>
 		</br>
-		<form action="groupCreation" method="GET">
+		<form action="ServletProfile" method="GET">
 			<div id="nameField" class="child">
 				Group Name<br> <input type="text" name="name">
 			</div>

@@ -27,6 +27,7 @@ public class WaitingLobby extends HttpServlet {
 		System.out.println(location + " " + price + " " + numMembers + " " + groupActivity);
 		request.setAttribute("location", location);
 		System.out.println("this is the location in servlet " + location);
+		request.setAttribute("groupName", groupName);
 		request.setAttribute("price", price);
 		request.setAttribute("numMembers", numMembers);
 		request.setAttribute("groupActivity", groupActivity);

@@ -76,6 +76,7 @@ table {
 }
 
 .groupDetails { 
+	position: absolute;
 	top: 30%; 
 	right: 50%; 
 }
