@@ -21,7 +21,7 @@ public class DatabaseHelper {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=Yj26Xcco&serverTimezone=UTC");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234");
 
 
 			if(conn == null) {
@@ -277,7 +277,7 @@ public class DatabaseHelper {
 		PreparedStatement ps; 
 		
 		try {
-			ps = conn.prepareStatement("SELECT notification FROM notification");
+			ps = conn.prepareStatement("SELECT notification FROM notifications");
 			ArrayList<String> notifications = new ArrayList<String>(); 
 			ResultSet ws = ps.executeQuery();
 			while(ws.next()) {

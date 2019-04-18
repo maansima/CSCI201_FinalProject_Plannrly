@@ -47,6 +47,8 @@ function hover(element) {
 	String username = db.GetUser((Integer)session.getAttribute("loginID"));
 	Integer usernameID = (Integer)session.getAttribute("loginID");
 	System.out.println("username: " + usernameID);
+	ArrayList<String> notifications = db.getNotification();
+	System.out.println("this is notifications" + notifications);
 %>
 </head>
 <link rel="stylesheet" type="text/css" href="Profile.css" />
@@ -75,9 +77,10 @@ function hover(element) {
 <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
   		<p>Pending Notifications:</p>
   		<div class="member">
-  			<div>Notification 1</div> 
-  			<div>Notification 2</div>
-  			<div>Notification 3</div>
+  			<%if (notifications!=null){ %>
+  		<%for(int i = 0; i<notifications.size();i++){ %>
+  			<p><%=notifications.get(i) %></p>
+  		<%}} %>
  		 </div>
  	 </div> 
   <main>
