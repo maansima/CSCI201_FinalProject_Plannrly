@@ -23,6 +23,7 @@ ONLINE MEMBERS IE. NETWORKING PORTION -->
 function start() {
 	  displayLinks();
 	  connectToServer();
+	  setTimeout(myFunction, 3000);
 	}
 	useSSL=false
 	
@@ -39,6 +40,12 @@ function displayLinks(){
 		document.getElementById("Profile").style.display = "initial";
 	}
 }
+	function myFunction() {
+		document.getElementById("wait").style.display = "none";
+		document.getElementById("waiting").style.display = "none";
+		document.getElementById("hardCoding").innerHTML += ("All Group Members are ready to go! </br>" +
+		"Click on the button to start voting! </br> <button type=\"button\" onClick=\"letsVote() + \">Let's Vote!</button>");
+	}
 	var socket
 	function connectToServer(){
 		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
@@ -92,8 +99,9 @@ function displayLinks(){
 </form>
 </div>
 <div id="dots">
-<p> Waiting for team members to connect </p>
+<p id="waiting"> Waiting for team members to connect </p>
 <span id="wait">.</span>
+<div id="hardCoding"> </div>
 </div>
 <script>
     window.dotsGoingUp = true;
