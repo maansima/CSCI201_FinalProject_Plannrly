@@ -21,7 +21,7 @@ public class DatabaseHelper {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root1234");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
 
 
 			if(conn == null) {
@@ -198,6 +198,17 @@ public class DatabaseHelper {
 		 		System.out.println("error");
 			}
 			return null;
+	}
+	
+	public String getVotes () throws SQLException{
+		String result = "";
+		PreparedStatement ps = conn.prepareStatement("SELECT votedList FROM whovoted WHERE dummy=?");
+		ps.setString(1, "dummy");
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			result += rs.getString("votedList") + ",";
+		}
+		return result;
 	}
 	
 	public boolean createAccount(String username, String password) throws SQLException {
