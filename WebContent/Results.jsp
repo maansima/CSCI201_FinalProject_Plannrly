@@ -116,7 +116,56 @@ a{
 <div class="w3-col l8 s12">
   <!-- Activity Info  -->
   <div class="w3-card-4 w3-margin w3-white">
-    <img src="<%=Image%>" alt="ActivityPic" style="width:400px; max-height:400px; positionn:absolute;"> <span><img src="/w3images/woods.jpg" alt="GoogleMapsPic" style="width:25%;position:absolute;"></span>
+    <img src="<%=Image%>" alt="ActivityPic" style="width:400px; max-height:400px; positionn:absolute;"> <span>
+    <div id="floating-panel">
+    <b>Mode of Travel: </b>
+    <select id="mode">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+    </div>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          //change center to vars lat and lng that are in btw star and end address
+          center: {lat: 37.77, lng: -122.447}
+        });
+        directionsDisplay.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+        document.getElementById('mode').addEventListener('change', function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        });
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var selectedMode = document.getElementById('mode').value;
+        directionsService.route({
+        	//var originin and destination need to be passed in as a var
+          origin: {lat: 37.77, lng: -122.447},  // Haight.
+          destination: {lat: 37.768, lng: -122.511},  // Ocean Beach.
+          // Note that Javascript allows us to access the constant
+          // using square brackets and a string value as its
+          // "property."
+          travelMode: google.maps.TravelMode[selectedMode]
+        }, function(response, status) {
+          if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHJyoIlrEsW-fR_x3YfRpwAUqpUAvqs6k&callback=initMap" style="width:25%;position:absolute;">
+    </script>
+    </span>
     <div class="w3-container">
       <h3><b><%=Name %></b></h3>
       <h5><span class="w3-opacity"><pre><%=Price %></pre></span>

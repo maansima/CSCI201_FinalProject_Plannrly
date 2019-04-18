@@ -310,6 +310,32 @@ public class DatabaseHelper {
 		}
 		return null;
 	}
+	public String getActivityAddress(Integer IDAct) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT Time FROM Activities WHERE idActivities=?");
+		ps.setInt(1, IDAct);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			return rs.getString("Address");
+		}
+		}catch (SQLException ex) {
+	 		System.out.println("error Act");
+		}
+		return null;
+	}
+	public String getActivityPrice(Integer IDAct) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT Time FROM Activities WHERE idActivities=?");
+		ps.setInt(1, IDAct);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			return rs.getString("Price");
+		}
+		}catch (SQLException ex) {
+	 		System.out.println("error Act");
+		}
+		return null;
+	}
 	
 
 }
