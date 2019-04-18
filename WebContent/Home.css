@@ -77,7 +77,10 @@ form submit{
 }
 
 #button {
-	border-radius: 12px;
+	border-radius: 20px;
+	background-color: #EED2EA;
 }
+
+a:hover{color:#EED2EA};
 
 

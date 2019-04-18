@@ -39,13 +39,21 @@
 			document.getElementById("GroupCreation").style.display = "initial";
 		}
 	}
+	
+	function hover(element) {
+		  element.setAttribute('src', 'plannrlyPink.png');
+		}
+
+		function unhover(element) {
+		  element.setAttribute('src', 'plannrly.jpg');
+		}
 </script>
 </head>
 <link rel="stylesheet" type="text/css" href="Signup.css" />
 <body>
 
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
@@ -54,7 +62,10 @@
 </div>
 
 	<div id="container">
-		<p>Create your account:</p>
+	<p>Create your account:</p>
+	<img id="icon" src="user.png" width="30%" >
+		<div id = "form" >
+		
 		<form method="GET"
 			action="${pageContext.request.contextPath}/ServletSignUp">
 			<div class="child">
@@ -67,9 +78,10 @@
 				<input type="password" name="confirmpass" placeholder="Confirm Password"><br>
 			</div>
 			<div class="child">
-				<input type="submit" placeholder="Submit">
+				<input type="submit" id="button" placeholder="Submit">
 			</div>
 		</form>
+		</div>
 	</div>
 </body>
 </html>
