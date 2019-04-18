@@ -47,19 +47,37 @@ window.onload= function(){
 		document.getElementById("GroupCreation").style.display = "initial";
 	}
 }
+
+function hover(element) {
+	  element.setAttribute('src', 'plannrlyPink.png');
+	}
+
+	function unhover(element) {
+	  element.setAttribute('src', 'plannrly.jpg');
+	}
+	function hover2(element) {
+		  element.setAttribute('src', 'userPink.png');
+		}
+
+		function unhover2(element) {
+		  element.setAttribute('src', 'user.png');
+		}
 </script>
 </head>
 <body>
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
-<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<div id="Profile"><a href="ServletProfile">Profile</a> </div>
 <a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 </div>
 
 <div id="container">
+<p> Login to your Account: </p>
+<img id="icon" src="user.png" width="30%" onmouseover="hover2(this);" onmouseout="unhover2(this);">
+<div id="form">
 <form action="LoginServlet" method = "GET"> 
 <div class="child">
 	Username<br>
@@ -67,13 +85,13 @@ window.onload= function(){
 	</div>
 	<div class="child">
 	Password<br>
-	<input type="text" name="pword">
+	<input type="password" name="pword">
 	</div>
 	<div class="child">
-	<input type="submit" name="submit" value="Login">
+	<input type="submit" id="button" name="submit" value="Login">
 	</div>
 </form>
-
+</div>
 </div>
 </body>
 </html>

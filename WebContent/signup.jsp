@@ -39,37 +39,59 @@
 			document.getElementById("GroupCreation").style.display = "initial";
 		}
 	}
+	
+	function hover(element) {
+		  element.setAttribute('src', 'plannrlyPink.png');
+		}
+
+		function unhover(element) {
+		  element.setAttribute('src', 'plannrly.jpg');
+		}
+		function hover2(element) {
+			  element.setAttribute('src', 'userPinkk.png');
+			}
+
+			function unhover2(element) {
+			  element.setAttribute('src', 'user.png');
+			}
 </script>
 </head>
 <link rel="stylesheet" type="text/css" href="Signup.css" />
 <body>
 
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
-<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<div id="Profile"><a href="ServletProfile">Profile</a> </div>
 <a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
 
 	<div id="container">
-		<p>Create your account:</p>
+	<p>Create your account:</p>
+	<img id="icon" src="user.png" width="30%" onmouseover="hover2(this);" onmouseout="unhover2(this);">
+		<div id = "form" >
+		
 		<form method="GET"
 			action="${pageContext.request.contextPath}/ServletSignUp">
 			<div class="child">
-				<input type="text" name="username" placeholder="Username"><br>
+				Username<br>
+				<input type="text" name="username"><br>
 			</div>
 			<div class="child">
-				<input type="text" name="pass" placeholder="Password"><br>
+				Password<br>
+				<input type="password" name="pass"><br>
 			</div>
 			<div class="child">
-				<input type="text" name="confirmpass" placeholder="Confirm Password"><br>
+				Confirm Password<br>
+				<input type="password" name="confirmpass"><br>
 			</div>
 			<div class="child">
-				<input type="submit" placeholder="Submit">
+				<input type="submit" id="button" placeholder="Submit">
 			</div>
 		</form>
+		</div>
 	</div>
 </body>
 </html>

@@ -60,6 +60,19 @@ a{
 
 }
 
+p{
+	color: #EED2EA;
+}
+
+#form {
+	text-align: center;
+}
+
+#button {
+	border-radius: 20px;
+	background-color: #EED2EA;
+}
 .child{
 	margin: 10px;
 }
+a:hover{color:#EED2EA};

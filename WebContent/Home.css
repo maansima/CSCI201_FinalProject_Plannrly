@@ -9,6 +9,7 @@ body {
 #header #logo {
 	height: 100px; 
 	width: auto;
+	float: left;
 }
 
 #Profile {
@@ -33,13 +34,19 @@ body {
 	padding-right: 30px;
 }
 
+
+#GroupCreation{
+	float: right;
+	padding: 10px;
+	padding-right: 20px;
+}
+
 a{
 	text-decoration: none;
 	color: black; 
 }
 
 #center{
-
   position:fixed;
   top: 50%;
   left: 50%;
@@ -54,14 +61,26 @@ a{
 	align-self: center;
 }
 
+#form {
+	text-align:center;
+}
+
 
 form input{
 	padding: 10px;
 	width: 200px;
-	box-shadow: 1px 1px #888888;
+	
 }
 
 form submit{
 	width: 30px;
 }
+
+#button {
+	border-radius: 20px;
+	background-color: #EED2EA;
+}
+
+a:hover{color:#EED2EA};
+
 

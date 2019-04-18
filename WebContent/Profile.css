@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
 	height: 100%; 
 	width: 100%;
@@ -7,6 +9,8 @@ body {
 #header #logo {
 	height: 100px; 
 	width: auto;
+	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+
 }
 
 #Profile {
@@ -29,6 +33,11 @@ body {
 	float: right;
 	padding: 10px;
 	padding-right: 30px;
+}
+#GroupCreation{
+	float: right;
+	padding: 10px;
+	padding-right: 20px;
 }
 a{
 	text-decoration: none;
@@ -134,6 +143,7 @@ button:hover {
     flex-direction: column;
     align-items: normal;
     justify-content: flex-start;
+
   }
   .menu__text {
     display: inline-block;
@@ -191,15 +201,9 @@ button:hover {
   --red: #ED5454;
 }
 
-body {
-  font-family: Montserrat;
-  font-weight: 100;
-  color: #A8B2B9;
-}
-
 sidebar {
   background-color: white;
-  box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 main {
@@ -207,7 +211,7 @@ main {
 }
 
 .avatar__name {
-  font-size: 0.8rem;
+  font-size: 24px;
 }
 
 .menu__item {
@@ -244,7 +248,6 @@ main {
   }
   .menu__item--active {
     border-left: 4px solid var(--red);
-    box-shadow: inset 10px 0px 17px -13px var(--red);
   }
 }
 
@@ -301,5 +304,9 @@ main {
   background-color: white;
   color: var(--red);
   font-weight: 500;
-  box-shadow: 1px 2px 30px -5px var(--red);
+  }
+
+.groups{
+	padding-left: 30px;
 }
+a:hover{color:#EED2EA};

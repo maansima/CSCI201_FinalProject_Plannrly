@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="Test.ServerSocket, Test.DatabaseHelper"%>
+    pageEncoding="UTF-8" import="Test.ServerSocket, Test.DatabaseHelper, Test.ServerThread, Test.ChatClient, Test.ChatRoom"%>
 <!DOCTYPE html>
 <html>
 <!-- CAN BE ACCESSED BY ALL GROUP MEMBERS, REDIRECT TO VOTE FROM HERE AND SHOW 
@@ -51,21 +51,33 @@ function displayLinks(){
 		}
 	}
 	function sendMessage(){
-		console.log("name");
-		console.log("<%= name %>");
 		socket.send("<%= name %> : " + document.form.message.value);
+		document.getElementById("message").value = "";
 		return false;
 }
+	
+	function hover(element) {
+		  element.setAttribute('src', 'plannrlyPink.png');
+		}
+
+		function unhover(element) {
+		  element.setAttribute('src', 'plannrly.jpg');
+		}
 </script>
 </head>
 <body onload = "start()">
+<%
+ChatClient cc= new ChatClient("192.168.43.1", 6789);
+%>
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
-<div id="Profile"><a href="Profile.jsp">Profile</a> </div>
+<div id="Profile"><a href="ServletProfile">Profile</a> </div>
 <a id="SignOut" href = "SignOut.jsp">Sign Out</a>
 </div>
+<div id="content"> 
+<div id="left"> 
 <form name="form" onsubmit="return sendMessage()">
 <table class="fixed_header">
 	<thead>
@@ -75,8 +87,32 @@ function displayLinks(){
 	</thead>
 	<tbody id="mychat"> </tbody>	
 </table>
-	<input type="text" name= "message" placeholder="Type a message"/><br>
+	<input type="text" id="message" name= "message" placeholder="Type a message"/><br>
 	<input type="submit" id="button" name="submit" value="Send"/><br>			
 </form>
+</div>
+<div id = "right" >
+<div id="waiting" >
+<p> Waiting for team members to connect </p>
+<span id="wait">.</span>
+
+<script>
+    window.dotsGoingUp = true;
+    var dots = window.setInterval( function() {
+        var wait = document.getElementById("wait");
+        if ( window.dotsGoingUp ) 
+            wait.innerHTML += ".";
+        else {
+            wait.innerHTML = wait.innerHTML.substring(1, wait.innerHTML.length);
+            if ( wait.innerHTML === "")
+                window.dotsGoingUp = true;
+        }
+        if ( wait.innerHTML.length > 9 )
+            window.dotsGoingUp = false;
+        }, 100);
+    </script>
+</div>
+</div>
+</div>
 </body>
 </html>

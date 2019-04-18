@@ -49,9 +49,26 @@ a{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+   justify-content: space-evenly; 
+}
+
+#button {
+	border-radius: 12px;
+	background-color: #EED2EA;
+	width: 60%;
+}
+
+p{
+	color: #EED2EA;
+}
+
+#form {
+	text-align: center;
 }
 
 .child{
-	margin: 10px;
+	margin: 20px;
 }
+
+a:hover{color:#EED2EA};
+

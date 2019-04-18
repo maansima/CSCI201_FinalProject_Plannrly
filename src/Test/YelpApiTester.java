@@ -87,10 +87,13 @@ public class YelpApiTester extends HttpServlet {
 			request.setAttribute("cityName", empty);
 		}
 		request.setAttribute("resultList", results);
+
 		HttpSession session = request.getSession();
 		session.setAttribute("resultList1", results);
 		RequestDispatcher rd = request.getRequestDispatcher("Activities.jsp");
-		rd.forward(request, response);
+		session.setAttribute("resultList", results);
+		RequestDispatcher pd = request.getRequestDispatcher("tinder.jsp");
+		pd.forward(request, response);
 	}
 
 

@@ -47,6 +47,7 @@ public class groupCreation extends HttpServlet {
 		}
 		
 		String[] members = memberNames.split(",");
+		
 		for(int i = 0; i<members.length;i++) {
 			System.out.println("Member" + i + ": " + members[i]);
 			try {
@@ -63,14 +64,17 @@ public class groupCreation extends HttpServlet {
 		}
 		Vector<String> GroupMembers = new Vector<String>();
 		for(int i = 0; i<members.length;i++) {
-			GroupMembers.add(members[i]);
+			String name = members[i].trim();
+			GroupMembers.add(name);
 		}
 				
 		try {
-			db.createGroup(groupName, GroupMembers, cityName, priceInt, activityType);
+			String groupOwner = db.GetUser(username);
+			db.createGroup(groupName, GroupMembers, cityName, priceInt, activityType, groupOwner);
 		} catch (SQLException e) {
 			System.out.println("error in creating group : " + e.getMessage());
 		}
+		request.setAttribute("numGroup", members.length);
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/WaitingLobby.jsp");
 		dispatch.forward(request,response);
 		

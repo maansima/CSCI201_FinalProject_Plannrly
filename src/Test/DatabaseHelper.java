@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.servlet.http.HttpSession;
+
 public class DatabaseHelper {
 	
 	private Connection conn = null;
@@ -18,7 +20,7 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=Yj26Xcco&serverTimezone=UTC");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -43,6 +45,21 @@ public class DatabaseHelper {
 		}
 		return -1;
 		
+	}
+	
+	public int GetGroupID(String groupName) {
+		try {
+		PreparedStatement ps = conn.prepareStatement("SELECT groupID FROM GroupInfo WHERE groupName=?");
+		ps.setString(1, groupName);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt("groupID");
+		}
+		} catch (SQLException ex) {
+	 		System.out.println("error");
+		}
+		return -1;
+
 	}
 	
 	public ArrayList<String> GetGroups(Integer ID){
@@ -117,7 +134,7 @@ public class DatabaseHelper {
 		}
 	}
 	
-	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType) throws SQLException {
+	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType, String groupOwner) throws SQLException {
 		boolean check = false;
 		int memberCount = groupMembers.size();
 		String query = "SELECT COUNT(*) FROM GroupInfo WHERE groupName=?";
@@ -137,6 +154,17 @@ public class DatabaseHelper {
 			st.setInt(4, price);
 			st.setString(5, activityType);
 			st.executeUpdate();
+			
+			//adding all the members in 
+			
+			for(int i = 0; i < groupMembers.size(); i++) {
+				joinGroup(groupName, groupMembers.get(i));
+			}
+			
+			
+			//get current user and add them too
+			joinGroup(groupName, groupOwner);
+			
 			return true;
 		}
 		return false;
@@ -191,8 +219,10 @@ public class DatabaseHelper {
 			String insertQuery = "INSERT INTO GroupMember (userID, groupID)"
 					+ "values(?, ?)";
 			st = conn.prepareStatement(insertQuery);
-			st.setString(1, username);
-			st.setString(2, groupName);
+			int userId = GetID(username);
+			int groupId = GetGroupID(groupName);
+			st.setInt(1, userId);
+			st.setInt(2, groupId);
 			st.executeUpdate();
 			return true;
 		}
