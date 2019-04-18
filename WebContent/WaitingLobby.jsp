@@ -38,7 +38,7 @@ function displayLinks(){
 }
 	var socket
 	function connectToServer(){
-		socket = new WebSocket("ws://localhost:8080/Plannrly/chat2");
+		socket = new WebSocket("ws://gateway:8080/Plannrly/chat2");
 		socket.onopen = function(event){
 			document.getElementById("mychat").innerHTML +="Connected!<br>"; 
 		}
@@ -54,6 +54,14 @@ function displayLinks(){
 		document.getElementById("message").value = "";
 		return false;
 }
+	
+	function hover(element) {
+		  element.setAttribute('src', 'plannrlyPink.png');
+		}
+
+		function unhover(element) {
+		  element.setAttribute('src', 'plannrly.jpg');
+		}
 </script>
 </head>
 <body onload = "start()">
@@ -61,7 +69,7 @@ function displayLinks(){
 ChatClient cc= new ChatClient("192.168.43.1", 6789);
 %>
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>

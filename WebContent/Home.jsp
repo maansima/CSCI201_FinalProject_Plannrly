@@ -22,11 +22,26 @@ window.onload= function(){
 		document.getElementById("GroupCreation").style.display = "initial";
 	}
 }
+
+function hover(element) {
+	  element.setAttribute('src', 'plannrlyPink.png');
+	}
+
+	function unhover(element) {
+	  element.setAttribute('src', 'plannrly.jpg');
+	}
+	function hover2(element) {
+	  element.setAttribute('src', 'groupPink.png');
+	}
+
+	function unhover2(element) {
+	  element.setAttribute('src', 'group.png');
+	}
 </script>
 </head>
 <body>
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
@@ -35,7 +50,7 @@ window.onload= function(){
 </div>
 
 <div id="center">
-<img id="group" src="group.png">
+<img id="group" src="group.png" onmouseover="hover2(this);" onmouseout="unhover2(this);">
 <div id="form">
 <form action="YelpApiTester" method="GET">
 <div id="inputs">

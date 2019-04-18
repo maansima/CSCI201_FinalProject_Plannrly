@@ -5,10 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function hover(element) {
+	  element.setAttribute('src', 'plannrlyPink.png');
+	}
+
+	function unhover(element) {
+	  element.setAttribute('src', 'plannrly.jpg');
+	}
+</script>
 </head>
 <body>
 <div id = "header"> 
-<a href="Home.jsp"><img id="logo" src = "plannrly.jpg"></img></a>
+<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>

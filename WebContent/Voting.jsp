@@ -8,7 +8,15 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 <head>
 <link rel="stylesheet" type="text/css" href="VotingCss.css" />
 <title>Lets Vote!</title>
+<script>
+function hover(element) {
+	  element.setAttribute('src', 'plannrlyPink.png');
+	}
 
+	function unhover(element) {
+	  element.setAttribute('src', 'plannrly.jpg');
+	}
+</script>
 </head>
 <body>
     <%
@@ -26,6 +34,7 @@ Test.Location,Test.Region,java.util.ArrayList"%>
 				}
 			}
 		%>
+
 <script>
 var jsArray = [<% for (int i = 0; i < 5; i++) { %>"<%= activitiesList.get(0).getBusinesses().get(i).getName() %>"<%= i + 1 < 5 ? ",":"" %><% } %>];
 var index = <%=z%>-1;

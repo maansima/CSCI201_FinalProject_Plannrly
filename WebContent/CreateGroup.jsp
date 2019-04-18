@@ -20,13 +20,21 @@
 			document.getElementById("Profile").style.display = "initial";
 		}
 	}
+	
+	function hover(element) {
+		  element.setAttribute('src', 'plannrlyPink.png');
+		}
+
+		function unhover(element) {
+		  element.setAttribute('src', 'plannrly.jpg');
+		}
 </script>
 </head>
 <link rel="stylesheet" type="text/css" href="CreateGroup.css" />
 <body>
 	<div id="header">
-		<a href="Home.jsp"><img id="logo" src="plannrly.jpg"></img></a> <a
-			id="Login" href="login.jsp">Login</a> <a id="SignUp"
+		<a href="Home.jsp"><img id="logo" src = "plannrly.jpg" onmouseover="hover(this);" onmouseout="unhover(this);"></img></a>
+		<a id="Login" href="login.jsp">Login</a> <a id="SignUp"
 			href="signup.jsp">Sign up</a>
 		<div id="Profile">
 			<a href="ServletProfile">Profile</a>
