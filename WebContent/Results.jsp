@@ -120,6 +120,10 @@ a{
         line-height: 30px;
         padding-left: 10px;
       }
+      
+     form #dateHolder{
+		height: 30px;
+	}
 }
 </style>
 <body>
@@ -181,7 +185,7 @@ function initMap() {
         <div class="w3-col m4 w3-hide-small">
         <%if(voting == null){ %>
         <form method="GET" action="AddActivity" id ="add">
-        	<input type="date" style="width:100px;"id="start" name="activitystart"
+        	<input id="dateHolder" type="date" style="width:200px;"id="start" name="activitystart"
       			 placeholder="2019-04-16"
        			min="2019-04-16" max="2019-04-31"><br>
        			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="time" value="Night">Night </span>

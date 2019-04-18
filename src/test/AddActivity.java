@@ -4,6 +4,7 @@ package Test;
 import java.io.IOException;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,6 +58,9 @@ public class AddActivity extends HttpServlet {
 		
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		RequestDispatcher rd = request.getRequestDispatcher("ServletProfile");
+		rd.forward(request, response);
 	}
 
 	/**
