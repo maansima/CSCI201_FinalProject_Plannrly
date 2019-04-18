@@ -50,6 +50,7 @@ function hover(element) {
  String Price = (String)request.getAttribute("Price");
  Double Rating = (Double)request.getAttribute("Rating");
  String Name = (String)request.getAttribute("Name");
+ String Name2 = ((String)request.getAttribute("Name")).replace(" ", "*");
  String Location = (String)request.getAttribute("Location");
  request.setAttribute("Name", Name); 
 %>
@@ -183,6 +184,7 @@ function initMap() {
       			 placeholder="2019-04-16"
        			min="2019-04-16" max="2019-04-31"><br>
        			<span></span><input type=radio name="time" value="Morning">Morning <input type=radio name="time" value="Afternoon">Afternoon <input type=radio name="time" value="Night">Night </span>
+       			<input name="Name" type=radio style="visibility:hidden" value=<%=Name2%> checked>
           <p><span class="w3-padding-large w3-right"><button type="submit" form="add" style="border:none; background-color:white;">ADD TO CALENDAR &nbsp;</button></span></p>
           </form>
           <%} %>

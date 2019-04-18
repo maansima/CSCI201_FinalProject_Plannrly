@@ -20,11 +20,8 @@ public class DatabaseHelper {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=Yj26Xcco&serverTimezone=UTC");
-=======
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PlannrlyUsers?user=root&password=root");
->>>>>>> 7999c09ed1caaebd80df2aa6c9c8ab4712d7e8c5
+
 			if(conn == null) {
 				System.out.println("it is null oh uh");
 			}
@@ -305,11 +302,11 @@ public class DatabaseHelper {
 	}
 	public void addActivity(String ActivityName, Integer userID, Integer Time, Integer Date) {
 		String query = "INSERT INTO Activities (userID, ActivityName,Time,Date)"
-				+ "values(?, ?,?,?,?)";
+				+ "values(?, ?,?,?)";
 		try {
 		st = conn.prepareStatement(query);
 		st.setInt(1, userID);
-		st.setString(1,ActivityName);
+		st.setString(2,ActivityName);
 		st.setInt(3,Time);
 		st.setInt(4,Date);
 		st.executeUpdate();

@@ -34,11 +34,25 @@ public class AddActivity extends HttpServlet {
 		
 		String ActivityDate = (String)request.getParameter("activitystart");
 		System.out.println(ActivityDate);
-		String ActivityTime = (String)request.getParameter("time");
-		System.out.println(ActivityTime);
+		String ActivityName = (String)request.getParameter("Name");
+		ActivityName = ActivityName.replace("*", " ");
+		System.out.println(ActivityName);
+		String ActivityTimeStr = (String)request.getParameter("time");
+		Integer ActivityTime;
+		if(ActivityTimeStr == "Morning") {
+			ActivityTime = 1;
+		}
+		else if (ActivityTimeStr == "Afternoon") {
+			ActivityTime = 2;
+		}
+		else {
+			ActivityTime = 3;
+		}
+		Integer ActivityDay = Integer.parseInt((ActivityDate.split("-"))[2]);
 		HttpSession session = request.getSession();
 		Integer LoginID = (Integer)session.getAttribute("loginID");
 		System.out.println(LoginID);
+		db.addActivity(ActivityName, LoginID, ActivityTime, ActivityDay);
 
 		
 		// TODO Auto-generated method stub
