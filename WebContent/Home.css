@@ -34,10 +34,11 @@ body {
 	padding-right: 30px;
 }
 
-#GroupCreation {
-	float: left;
+
+#GroupCreation{
+	float: right;
 	padding: 10px;
-	padding-left: 30px;
+	padding-right: 20px;
 }
 
 a{
@@ -75,7 +76,11 @@ form submit{
 	width: 30px;
 }
 
+<<<<<<< HEAD
 #button {
 	border-radius: 12px;
 }
+=======
+
+>>>>>>> b86062b9bd192a7e881f1f53b2efec7a17b93f6a
 
