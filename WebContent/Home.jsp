@@ -36,12 +36,11 @@ window.onload= function(){
 
 <div id="center">
 <img id="group" src="group.png">
+<div id="form">
 <form action="YelpApiTester" method="GET">
 <div id="inputs">
 <div id="child">
 <input name="cityName" type="text" placeholder="Where do you want to go?"></input>
-</div>
-<div id="child">
 <select name="activityType">
   <option value="food">Food</option>
   <option value="bars">Bars</option>
@@ -49,13 +48,15 @@ window.onload= function(){
   <option value="arts">Arts</option>
 </select>
 </div>
+</br>
 <div id="child">
 <div class="submit">
 </div>
-<input type="submit" value="Show me activities!"></input>
+<input type="submit" id="button" value="Show me activities!"></input>
 </div>
 </div>
 </form>
+</div>
 </div>
 </body>
 </html>
