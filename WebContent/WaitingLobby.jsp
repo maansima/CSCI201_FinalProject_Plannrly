@@ -74,6 +74,10 @@ function displayLinks(){
 		function unhover(element) {
 		  element.setAttribute('src', 'plannrly.jpg');
 		}
+		
+	function letsVote(){
+		document.hiddenForm.submit();
+	}
 </script>
 </head>
 <body onload = "start()">
@@ -137,5 +141,13 @@ All Group Members are ready to go! </br>" +
 <div id="groupPrice"> <% out.println("<p> Activity Price : " + price + "</p>"); %> </div>
 <div id="numMembers"><% out.println("<p> Number of Members : " + numMembers + "</p>"); %></div>
 </div>
+<form name="hiddenForm" action="PostWaitingServ" method="GET" style="display:none;" >
+<input type="text" name="gName" id="hiddenField" value="<%=groupName%>" />
+<input type="text" name="actLoc" id="hiddenField" value="<%=location%>" />
+<input type="text" name="actPrice" id="hiddenField" value="<%=price%>" />
+<input type="text" name="numMem" id="hiddenField" value="<%=numMembers%>" />
+<input type="text" name="typeAct" id="hiddenField" value="<%=groupActivity%>" />
+<input type="submit" id="button" value="Submit form">
+</form>
 </body>
 </html>
