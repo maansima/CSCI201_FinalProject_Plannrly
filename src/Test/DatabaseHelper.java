@@ -198,6 +198,61 @@ public class DatabaseHelper {
 		}
 	}
 	
+	public boolean createVote(String voteName) throws SQLException {
+		boolean check = false;
+		String query = "SELECT COUNT(*) FROM Votes WHERE activityName=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, voteName);
+		rs = st.executeQuery();
+		while(rs.next()) {
+			check = (rs.getInt(1)==0); // verifies that no activity with this name currently exists
+		}
+		if(check) {
+			String insertQuery = "INSERT INTO Votes (voteName, numVotes)"
+			        + " values (?, ?)";
+			st = conn.prepareStatement(insertQuery);
+			st.setString(1, voteName);
+			st.setInt(2, 1);
+			st.executeUpdate();
+			return true;
+			
+		}
+		else { 
+			return false;
+		}
+	}
+	
+	public boolean updateVote(String voteName) throws SQLException {
+		boolean check = false;
+		int count = 0;
+		String query = "SELECT COUNT(*) FROM Votes WHERE voteName=?";
+		st = conn.prepareStatement(query);
+		st.setString(1, voteName);
+		rs = st.executeQuery();
+		while(rs.next()) {
+			check = (rs.getInt(1)==1); // verifies that an activity with this name currently exists
+		}
+		if(check) {
+			PreparedStatement ps = conn.prepareStatement("SELECT numVotes FROM Votes WHERE voteName=?");
+				ps.setString(1, voteName);
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt("numVotes");
+				}
+			count++;
+			String insertQuery = "UPDATE Votes SET numVotes=? WHERE voteName=?"
+			        + " values (?, ?)";
+			st = conn.prepareStatement(insertQuery);
+			st.setInt(1, count);
+			st.setString(2, voteName);
+			st.executeUpdate();
+			return true;
+		}
+		else { 
+			return false;
+		} 
+	}
+	
 	public boolean createGroup(String groupName, Vector<String> groupMembers, String location, int price, String activityType, String groupOwner) throws SQLException {
 		boolean check = false;
 		int memberCount = groupMembers.size();
@@ -233,6 +288,8 @@ public class DatabaseHelper {
 		}
 		return false;
 	}
+	
+	
 	
 	public int validateLogin(String username, String password) throws SQLException {
 		boolean check = false;
