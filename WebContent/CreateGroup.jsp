@@ -28,6 +28,13 @@
 		function unhover(element) {
 		  element.setAttribute('src', 'plannrly.jpg');
 		}
+		function hover2(element) {
+			  element.setAttribute('src', 'groupPink.png');
+			}
+
+			function unhover2(element) {
+			  element.setAttribute('src', 'group.png');
+			}
 </script>
 </head>
 <link rel="stylesheet" type="text/css" href="CreateGroup.css" />
@@ -41,8 +48,11 @@
 		</div>
 		<a id="SignOut" href="${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
 	</div>
-	<img id="group" src="group.png"></img>
+	<img id="group" src="group.png" onmouseover="hover2(this);" onmouseout="unhover2(this);"></img>
 	<div id="container">
+		<div id="form"> 
+		<p> Make your Group! </p>
+		</br>
 		<form action="groupCreation" method="GET">
 			<div id="nameField" class="child">
 				Group Name<br> <input type="text" name="name">
@@ -71,9 +81,10 @@
 				</select>
 			</div>
 			<div id="submitButton" class="child">
-				<input type="submit">
+				<input type="submit" id="button">
 			</div>
 		</form>
+		</div>
 	</div>
 </body>
 </html>
