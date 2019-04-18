@@ -37,6 +37,18 @@ a{
 	color: black; 
 }
 
+p{
+	color: #EED2EA;
+}
+
+#form {
+	text-align: center;
+}
+#button {
+	border-radius: 12px;
+	background-color: #EED2EA;
+	width: 60%;
+}
 #container{
   height: 500px; 
   width: 500px;

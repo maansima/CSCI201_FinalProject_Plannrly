@@ -47,6 +47,13 @@
 		function unhover(element) {
 		  element.setAttribute('src', 'plannrly.jpg');
 		}
+		function hover2(element) {
+			  element.setAttribute('src', 'userPinkk.png');
+			}
+
+			function unhover2(element) {
+			  element.setAttribute('src', 'user.png');
+			}
 </script>
 </head>
 <link rel="stylesheet" type="text/css" href="Signup.css" />
@@ -63,7 +70,7 @@
 
 	<div id="container">
 	<p>Create your account:</p>
-	<img id="icon" src="user.png" width="30%" >
+	<img id="icon" src="user.png" width="30%" onmouseover="hover2(this);" onmouseout="unhover2(this);">
 		<div id = "form" >
 		
 		<form method="GET"

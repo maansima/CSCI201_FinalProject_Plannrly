@@ -55,6 +55,13 @@ function hover(element) {
 	function unhover(element) {
 	  element.setAttribute('src', 'plannrly.jpg');
 	}
+	function hover2(element) {
+		  element.setAttribute('src', 'userPinkk.png');
+		}
+
+		function unhover2(element) {
+		  element.setAttribute('src', 'user.png');
+		}
 </script>
 </head>
 <body>
@@ -68,6 +75,9 @@ function hover(element) {
 </div>
 
 <div id="container">
+<p> Login to your Account: </p>
+<img id="icon" src="user.png" width="30%" onmouseover="hover2(this);" onmouseout="unhover2(this);">
+<div id="form">
 <form action="LoginServlet" method = "GET"> 
 <div class="child">
 	Username<br>
@@ -78,10 +88,10 @@ function hover(element) {
 	<input type="password" name="pword">
 	</div>
 	<div class="child">
-	<input type="submit" name="submit" value="Login">
+	<input type="submit" id="button" name="submit" value="Login">
 	</div>
 </form>
-
+</div>
 </div>
 </body>
 </html>
