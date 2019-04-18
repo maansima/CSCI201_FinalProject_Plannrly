@@ -16,7 +16,7 @@ window.onload= function(){
 	var Voted = <%=session.getAttribute("voting")%>;
 	if(Voted ==0){
 		document.getElementById("novoting").style.display = "none";
-		 document.getElementById("novoting1").style.display = "none";<
+		 document.getElementById("novoting1").style.display = "none";
 	}
 	if(userID == 0){
 		document.getElementById("SignOut").style.display = "none";
@@ -127,8 +127,9 @@ a{
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
-<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
+<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
+
 	</div>
 <div class="w3-content" style="max-width:1400px">
 
