@@ -40,13 +40,13 @@ window.onload= function(){
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
-<a id="GroupCreation" href = "${pageContext.request.contextPath}/CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "${pageContext.request.contextPath}/ServletSignOut">Sign Out</a>
+<a id="GroupCreation" href = "${pageContext.request.contextPath}/CreateGroup.jsp">Create New Group</a>
 	</div>
 <div class="wrapper">
 <div class ="calendar" style="top:10px";>
 <div class = "groups" id = "groups" style="visibility: hidden; position:relative;height: 10%;">
-  		<p>Group's you are a member of:</p>
+  		<h3>Group's you are a member of:</h3>
   		<div class="member">
   		<%if (Groups!=null){ %>
   		<%for(int i = 0; i<Groups.size();i++){ %>
@@ -54,14 +54,14 @@ window.onload= function(){
   		<%}} %>
  		 </div>
  	 </div>
- <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
+<!--  <div class = "notifications" id = "notifications" style="visibility: hidden; position:absolute;top: 15%;">
   		<p>Pending Notifications:</p>
   		<div class="member">
   			<div>Notification 1</div> 
   			<div>Notification 2</div>
   			<div>Notification 3</div>
  		 </div>
- 	 </div>
+ 	 </div> -->
   <main>
     <div class="toolbar" id = "toolbar" style="position:absolute; top: 20%;">
       <div id ="toggle" class="toggle">
@@ -118,14 +118,14 @@ window.onload= function(){
     </div>
     <nav class="menu">
           <div class="menu__item menu__item--active">
-        <button id="button" style="border:none;background-color:white;color:gray;background-color:none;font-family: Montserrat;font-size:16px;" class="menu__text" onclick="Calendar()">Calendar</button>
+        <button id="button" style="border:none;background-color:white;background-color:none;font-family: Futura; font-size:16px;" class="menu__text" onclick="Calendar()">Calendar</button>
       </div>
       <div class="menu__item menu__item--active">
-        <button id="button" style="border:none;background-color:white;color:gray;background-color:none;font-family: Montserrat;font-size:16px;" class="menu__text" onclick="Groups()">Groups</button>
+        <button id="button" style="border:none;background-color:white;background-color:none;font-family: Futura; font-size:16px;" class="menu__text" onclick="Groups()">Groups</button>
       </div>
-      <div class="menu__item menu__item--active">
-        <button id="button" style="border:none;background-color:white;color:gray;background-color:none;font-family: Montserrat;font-size:16px;"class="menu__text" onclick="Notifications()">Notifications</button>
-      </div>
+     <!--  <div class="menu__item menu__item--active">
+        <button id="button" style="border:none;background-color:white;background-color:none;font-family: Futura; font-size:16px;"class="menu__text" onclick="Notifications()">Notifications</button>
+      </div> -->
     </nav>
   </sidebar>
   <script>

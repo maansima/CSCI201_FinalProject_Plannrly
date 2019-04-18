@@ -30,18 +30,17 @@ window.onload= function(){
 <a id="Login" href="login.jsp">Login</a>
 <a id="SignUp" href = "signup.jsp">Sign up</a>
 <div id="Profile"><a href="ServletProfile">Profile</a> </div>
-<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 <a id="SignOut" href = "ServletSignOut">Sign Out</a>
+<a id="GroupCreation" href = "CreateGroup.jsp">Create New Group</a>
 </div>
 
 <div id="center">
 <img id="group" src="group.png">
+<div id="form">
 <form action="YelpApiTester" method="GET">
 <div id="inputs">
 <div id="child">
 <input name="cityName" type="text" placeholder="Where do you want to go?"></input>
-</div>
-<div id="child">
 <select name="activityType">
   <option value="food">Food</option>
   <option value="bars">Bars</option>
@@ -49,13 +48,15 @@ window.onload= function(){
   <option value="arts">Arts</option>
 </select>
 </div>
+</br>
 <div id="child">
 <div class="submit">
 </div>
-<input type="submit" value="Show me activities!"></input>
+<input type="submit" id="button" value="Show me activities!"></input>
 </div>
 </div>
 </form>
+</div>
 </div>
 </body>
 </html>
